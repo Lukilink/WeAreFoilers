@@ -29,8 +29,9 @@
 
   function avatar(p, size) {
     var cls = 'avatar t-' + p.type + (size ? ' ' + size : '');
-    if (p.photo) return '<span class="' + cls + '" style="background-image:url(\'' + esc(String(p.photo).replace(/['"()\\\s]/g, '')) + '\')"></span>';
-    return '<span class="' + cls + '" style="background:' + gradient(p.avatarSeed || p.id) + '">' + initial(p.name) + '</span>';
+    var check = p.isPartner ? '<i class="verified" title="We Are Foilers partner">' + I.verified + '</i>' : '';
+    if (p.photo) return '<span class="' + cls + '" style="background-image:url(\'' + esc(String(p.photo).replace(/['"()\\\s]/g, '')) + '\')">' + check + '</span>';
+    return '<span class="' + cls + '" style="background:' + gradient(p.avatarSeed || p.id) + '">' + initial(p.name) + check + '</span>';
   }
 
   function place(p) { return p.atAway && p.away ? p.away : p.home; }
@@ -94,8 +95,13 @@
     if (p.contactHidden) a += '<button class="btn ghost locked" data-action="join">' + I.lock + 'WhatsApp & email for members</button>';
     if (a) h += '<div class="actions">' + a + '</div>';
 
+    if (p.isAuto) {
+      h += '<div class="auto-note">' + I.robot + '<span>Added automatically from public info, so travellers can find this ' + (p.type === 'school' ? 'school' : 'shop') +
+        '. <button class="link-btn strong" data-action="claim" data-id="' + esc(p.id) + '">Is this yours? Claim it</button></span></div>';
+    }
     if (!opts.own) {
-      h += '<div class="card-foot">' + (p.demo ? '<span class="demo-tag">Demo profile</span>' : '<span></span>') +
+      var tagLeft = p.demo ? '<span class="demo-tag">Demo profile</span>' : p.isPartner ? '<span class="partner-tag">' + I.verified + 'Partner</span>' : '<span></span>';
+      h += '<div class="card-foot">' + tagLeft +
         '<button class="link-btn" data-action="report" data-id="' + esc(p.id) + '">' + I.flag + 'Report</button></div>';
     }
     return h + '</article>';

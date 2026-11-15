@@ -13,7 +13,7 @@
     ['mara', 'private', 'Mara', ['El Médano, Tenerife', 28.052, -16.528], 'wing:3,prone:2,downwind:1', 'session-buddy,show-spots,lend-gear', 'Axis,Duotone',
       'Dawn patrol person. Will trade coffee for a downwind shuttle.', { ig: 'mara.foils', wa: '+34600000001', away: ['Corralejo, Fuerteventura', 28.715, -13.872, 'in March'] }],
     ['medano-wing-school', 'school', 'Médano Wing School', ['El Médano, Tenerife', 28.0447, -16.5383], 'wing:4,sup:3,efoil:3', 'beginner-tips,lend-gear', 'Duotone,F-One',
-      'Lessons for every level. First flight guaranteed, dignity not.', { web: 'https://example.com', hours: 'Daily 10:00 – 18:00', mail: 'hello@example.com' }],
+      'Lessons for every level. First flight guaranteed, dignity not.', { web: 'https://example.com', hours: 'Daily 10:00 – 18:00', mail: 'hello@example.com', partner: true }],
     ['jonas', 'private', 'Jonas', ['Sylt, Germany', 54.905, 8.322], 'wing:2,kite:3', 'session-buddy,ride-share', 'F-One',
       'North Sea, cold water, warm heart.', { ig: 'jonas_on_foil' }],
     ['lucia', 'private', 'Lucía', ['Tarifa, Spain', 36.031, -5.618], 'kite:4,wing:3,downwind:2', 'show-spots,coffee', 'Duotone,North',
@@ -27,7 +27,7 @@
     ['kai', 'private', 'Kai', ['Kahului, Maui', 20.905, -156.452], 'prone:4,downwind:4,wing:4', 'downwind-shuttle,show-spots', 'Armstrong,Go Foil',
       'Maliko run shuttle on Tuesdays. Bring snacks.', { ig: 'kai.glides' }],
     ['sam', 'private', 'Sam', ['Hood River, Oregon', 45.718, -121.534], 'wing:3,downwind:3', 'downwind-shuttle,ride-share', 'Cabrinha,Slingshot',
-      'Gorge downwinders. Swell or no swell.', { ig: 'samgorge' }],
+      'Gorge downwinders. Swell or no swell.', { ig: 'samgorge', partner: true }],
     ['gorge-board-shack', 'shop', 'Gorge Board Shack', ['Hood River, Oregon', 45.7095, -121.5149], 'wing:4,prone:3,sup:3', 'lend-gear', 'Slingshot,Cabrinha,Armstrong',
       'Demo gear, repairs and very honest advice.', { web: 'https://example.com', hours: 'Daily 9:00 – 18:00' }],
     ['thandi', 'private', 'Thandi', ['Big Bay, Cape Town', -33.795, 18.47], 'kite:3,wing:2,prone:2', 'session-buddy,show-spots', 'North,Duotone',
@@ -85,7 +85,8 @@
       'Kite and wing gear, lessons, rentals.', { status: 'pending', web: 'https://example.com' }]
   ];
 
-  var K = { user: 'waf.demo.user.v1', mine: 'waf.demo.mine.v1', reports: 'waf.demo.reports.v1', status: 'waf.demo.status.v1', settings: 'waf.demo.settings.v1' };
+  var K = { user: 'waf.demo.user.v1', mine: 'waf.demo.mine.v1', reports: 'waf.demo.reports.v1', status: 'waf.demo.status.v1', settings: 'waf.demo.settings.v1',
+            partner: 'waf.demo.partner.v1', partnerFlags: 'waf.demo.partnerflags.v1' };
   var mem = {};
   function get(k) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return mem[k] || null; } }
   function set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { mem[k] = v; } }
@@ -106,7 +107,7 @@
       about: s[7], photo: '',
       instagram: x.ig || '', website: x.web || '', hours: x.hours || '',
       whatsapp: x.wa || '', email: x.mail || '',
-      visible: true, status: x.status || 'approved', demo: true, createdAt: '2026-11-01'
+      isPartner: !!x.partner, visible: true, status: x.status || 'approved', demo: true, createdAt: '2026-11-01'
     };
     return p;
   }
@@ -119,19 +120,23 @@
     return { lat: +(lat + dLat).toFixed(5), lng: +(lng + dLng).toFixed(5) };
   }
 
+  /* The demo foilers are also shown in live mode while the admin switch "Show demo profiles" is on. */
+  window.WAF_DEMO = { profiles: function () { return SEEDS.map(seedProfile); } };
+
   window.createDemoStore = function (cfg) {
     var user = get(K.user);
     var listeners = [];
     function emit(ev) { listeners.forEach(function (cb) { cb(ev, user); }); }
 
-    function settings() { return Object.assign({ manualApproval: !!cfg.manualApproval }, get(K.settings) || {}); }
+    function settings() { return Object.assign({ manualApproval: !!cfg.manualApproval, showDemo: true, partnerProgram: !!cfg.partnerProgram }, get(K.settings) || {}); }
     function statusOverrides() { return get(K.status) || {}; }
 
     function allProfiles() {
       var ov = statusOverrides();
-      var list = SEEDS.map(seedProfile).map(function (p) { if (ov[p.id]) p.status = ov[p.id]; return p; });
+      var pf = get(K.partnerFlags) || {};
+      var list = SEEDS.map(seedProfile).map(function (p) { if (ov[p.id]) p.status = ov[p.id]; if (p.id in pf) p.isPartner = pf[p.id]; return p; });
       var mine = get(K.mine);
-      if (mine) list.push(Object.assign({}, mine, { mine: true }));
+      if (mine) list.push(Object.assign({}, mine, { mine: true, isPartner: !!pf['demo-mine'] }));
       return list.filter(function (p) { return p.status !== 'deleted'; });
     }
 
@@ -161,12 +166,19 @@
       getSettings: function () { return Promise.resolve(settings()); },
 
       listProfiles: function () {
+        var showDemo = settings().showDemo;
         return Promise.resolve(allProfiles().filter(function (p) {
-          return p.status === 'approved' && p.visible;
+          return p.status === 'approved' && p.visible && (showDemo || p.mine);
         }).map(publicView));
       },
 
-      getMyProfile: function () { return Promise.resolve(user ? get(K.mine) : null); },
+      getMyProfile: function () {
+        var m = user ? get(K.mine) : null;
+        if (m) m.isPartner = !!(get(K.partnerFlags) || {})['demo-mine'];
+        return Promise.resolve(m);
+      },
+      requestPartner: function (link) { set(K.partner, { profileId: 'demo-mine', link: link, status: 'requested', at: new Date().toISOString() }); return Promise.resolve(); },
+      getMyPartnerRequest: function () { return Promise.resolve(user ? get(K.partner) : null); },
 
       saveMyProfile: function (data) {
         var old = get(K.mine);
@@ -204,8 +216,15 @@
       /* Demo: everyone is admin, so the admin page can be tried out. */
       admin: {
         isAdmin: function () { return Promise.resolve(true); },
-        listAll: function () { return Promise.resolve(allProfiles().map(clone)); },
-        listReports: function () { return Promise.resolve(get(K.reports) || []); },
+        overview: function () {
+          var pr = get(K.partner);
+          return Promise.resolve({ profiles: allProfiles().map(clone), reports: get(K.reports) || [], partners: pr ? [pr] : [], settings: settings() });
+        },
+        setPartner: function (id, on) {
+          var pf = get(K.partnerFlags) || {}; pf[id] = !!on; set(K.partnerFlags, pf);
+          var pr = get(K.partner); if (pr && pr.profileId === id) { pr.status = on ? 'verified' : 'rejected'; set(K.partner, pr); }
+          return Promise.resolve();
+        },
         decide: function (id, status) {
           if (id === 'demo-mine') { var m = get(K.mine); if (m) { m.status = status; set(K.mine, m); } }
           else { var ov = statusOverrides(); ov[id] = status; set(K.status, ov); }

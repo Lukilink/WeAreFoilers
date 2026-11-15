@@ -7,7 +7,7 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var esc = U.esc;
-  var state = { profiles: [], me: null, view: 'list', selected: null, filters: { disc: [], types: [], open: [] } };
+  var state = { profiles: [], me: null, settings: {}, partnerRequest: null, claim: null, view: 'list', selected: null, filters: { disc: [], types: [], open: [] } };
   var quip = C.quips[Math.floor(Math.random() * C.quips.length)];
   var desktop = window.matchMedia('(min-width: 900px)');
 
@@ -165,7 +165,10 @@
   function renderList() {
     var b = map.getBounds(), center = map.getCenter();
     var list = filtered().filter(function (p) { var pl = U.place(p); return b.contains([pl.lat, pl.lng]); });
-    list.sort(function (a, c) { var pa = U.place(a), pc = U.place(c); return center.distanceTo([pa.lat, pa.lng]) - center.distanceTo([pc.lat, pc.lng]); });
+    list.sort(function (a, c) {
+      if (!!a.isPartner !== !!c.isPartner) return a.isPartner ? -1 : 1;
+      var pa = U.place(a), pc = U.place(c); return center.distanceTo([pa.lat, pa.lng]) - center.distanceTo([pc.lat, pc.lng]);
+    });
     var n = list.length, h;
     if (!n) {
       h = '<div class="panel-head"><div class="grow"><h2>Nobody here yet</h2><p class="quip">' + I.wave + 'Legends start somewhere.</p></div></div>' +
@@ -264,11 +267,55 @@
     if (p.away) h += '<p style="margin:-6px 0 16px;text-align:right"><button class="link-btn" data-action="edit-away">' + I.edit + 'Change travel spot</button></p>';
 
     h += U.card(p, { own: true });
+    h += partnerBox(p);
     h += '<div class="me-actions"><button class="btn" data-action="edit">' + I.edit + 'Edit card</button>' +
       '<button class="btn ghost" data-action="toggle-visible">' + (p.visible ? I.eyeOff + 'Hide card' : I.eye + 'Show card') + '</button></div>';
     h += '<div class="me-links"><button class="link-btn" data-action="signout">' + I.logout + 'Sign out</button><button class="link-btn" data-action="delete">' + I.trash + 'Delete account</button></div>';
     body.innerHTML = h + footer();
     body.scrollTop = 0;
+  }
+
+  /* ---------- Partner program ---------- */
+  function shareUrl() { return CFG.siteUrl.replace(/\/$/, ''); }
+  function partnerBox(p) {
+    if (!state.settings.partnerProgram || p.status !== 'approved') return '';
+    var r = state.partnerRequest;
+    if (p.isPartner) return '<div class="partner-box"><h4>' + I.verified + 'You\'re a partner</h4><p>Thanks for spreading the word! Your card has the blue check and shows up first in lists.</p></div>';
+    if (r && r.status === 'requested') return '<div class="partner-box"><h4>' + I.clock + 'Checking your link</h4><p>We\'ll look at ' + esc(r.link) + ' and add your blue check soon.</p></div>';
+    return '<div class="partner-box"><h4>' + I.verified + 'Get the blue check</h4><p>Share We Are Foilers in your Instagram bio, on your website or your school\'s page. ' +
+      'Partners get a blue check and show up first.</p><button class="btn small" data-action="partner">' + I.link + 'Become a partner</button></div>';
+  }
+  function openPartner() {
+    var d = openDialog(head('Become a partner') +
+      '<div class="dlg-body"><div class="auth-hero"><span class="doodle">' + I.verified + '</span><h3>Spread the stoke</h3><p>Put this link somewhere public, then tell us where.</p></div>' +
+      '<div class="field"><span class="label">1. Share this link</span><div class="copy-row"><span>' + esc(shareUrl().replace(/^https?:\/\//, '')) + '</span><button class="btn small soft" data-copy>' + I.copy + 'Copy</button></div>' +
+      '<p class="hint">For example in your Instagram bio, your link-in-bio page, or on your school or shop website.</p></div>' +
+      '<div class="field"><label for="pLink">2. Where did you put it?</label><input class="input" id="pLink" type="url" placeholder="https://instagram.com/yourhandle" maxlength="300">' +
+      '<p class="hint err hidden" id="pErr"></p></div></div>' +
+      '<div class="dlg-foot"><button class="btn ghost" data-close>Later</button><button class="btn accent" data-send>' + I.check + 'Send for check</button></div>', 'small');
+    if (state.me && state.me.instagram) d.querySelector('#pLink').value = 'https://instagram.com/' + state.me.instagram;
+    else if (state.me && state.me.website) d.querySelector('#pLink').value = state.me.website;
+    d.querySelector('[data-copy]').addEventListener('click', function () {
+      (navigator.clipboard ? navigator.clipboard.writeText(shareUrl()) : Promise.reject()).then(function () { toast('Link copied.'); }, function () { toast(shareUrl()); });
+    });
+    d.querySelector('[data-send]').addEventListener('click', function () {
+      var v = d.querySelector('#pLink').value.trim();
+      if (v && !/^https?:\/\//i.test(v)) v = 'https://' + v;
+      if (!/^https:\/\/[^\s]+\.[^\s]+/i.test(v)) { var e = d.querySelector('#pErr'); e.textContent = 'Please paste the full link, starting with https://'; e.classList.remove('hidden'); return; }
+      store.requestPartner(v).then(function () { d.close(); toast('Thanks! We\'ll check it soon.'); return reload(); }).catch(function (err) { toast(err.message); });
+    });
+  }
+
+  /* ---------- Claim an automatic entry ---------- */
+  function startClaim(id) {
+    var p = find(id); if (!p) return;
+    state.claim = p;
+    if (!store.getUser()) { toast('Create an account first, then your card replaces the automatic one.'); return openAuth('join'); }
+    if (state.me) {
+      return confirmDlg('Claim ' + esc(p.name) + '?', 'We\'ll replace the automatic entry with your card once we\'ve had a quick look.', 'Claim it')
+        .then(function (ok) { if (!ok) { state.claim = null; return; } store.saveMyProfile({ claimOf: p.id }).then(function (m) { state.me = m; state.claim = null; toast('Got it! We\'ll check and merge it.'); }); });
+    }
+    openEditor();
   }
 
   /* ---------- Panel actions ---------- */
@@ -279,6 +326,8 @@
     var act = a.dataset.action;
     if (act === 'back') { state.view === 'me' && !desktop.matches && setSize('half'); closeProfile(); }
     else if (act === 'report') openReport(a.dataset.id);
+    else if (act === 'partner') openPartner();
+    else if (act === 'claim') startClaim(a.dataset.id);
     else if (act === 'join') openAuth('join');
     else if (act === 'about') openAbout();
     else if (act === 'me') openMe();
@@ -441,11 +490,16 @@
   }
 
   function openEditor() {
-    var isNew = !state.me;
+    var isNew = !state.me, claim = isNew ? state.claim : null;
     var dr = JSON.parse(JSON.stringify(state.me || {
       type: 'private', name: '', photo: '', home: null, away: null, atAway: false, disciplines: [], disciplineOther: '',
       openFor: [], gear: [], gearOther: '', about: '', instagram: '', whatsapp: '', email: '', website: '', hours: ''
     }));
+    if (claim) {
+      ['type', 'name', 'disciplines', 'openFor', 'gear', 'about', 'instagram', 'website', 'hours'].forEach(function (k) { dr[k] = JSON.parse(JSON.stringify(claim[k] || dr[k])); });
+      dr.home = { label: claim.home.label, lat: claim.home.lat, lng: claim.home.lng, exact: true };
+      dr.claimOf = claim.id;
+    }
     if (!dr.id) dr.id = 'new-' + Date.now();
     if (!dr.avatarSeed) dr.avatarSeed = dr.id; // keeps the same color blob after saving
 
@@ -455,6 +509,7 @@
 
     var d = openDialog(head(isNew ? 'Your card' : 'Edit your card') +
       '<div class="dlg-body" id="ed">' +
+      (claim ? '<div class="notice teal">' + I.robot + '<span>You\'re claiming <b>' + esc(claim.name) + '</b>. We filled in what we knew. Once we\'ve had a quick look, your card replaces the automatic entry.</span></div>' : '') +
       '<p class="section-title">The basics</p>' +
       '<div class="field"><span class="label">I am</span><div class="seg" id="edType">' +
         C.types.map(function (t) { return '<button type="button" data-type="' + t.id + '">' + (t.id === 'private' ? 'A foiler' : t.id === 'school' ? 'A school' : 'A shop') + '</button>'; }).join('') + '</div></div>' +
@@ -569,15 +624,17 @@
       if (dr.website && !/^https:\/\/[^\s]+\.[^\s]+$/i.test(dr.website)) err('web', 'Please use a full https:// address.');
       if (errs.length) { errs[0].closest('.field').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
-      var data = Object.assign({}, dr); delete data.id; delete data.mine; delete data.status;
+      var data = Object.assign({}, dr); delete data.id; delete data.mine; delete data.status; delete data.demo;
+      if (data.type === 'private') delete data.claimOf;
+      var btn = q('#edSave'); btn.disabled = true;
       store.saveMyProfile(data).then(function (p) {
-        state.me = p; d.close();
+        state.me = p; state.claim = null; d.close();
         toast(p.status === 'pending' ? 'Saved! Your card shows up after a quick check.' : (isNew ? 'You\'re on the map! Welcome to the crew.' : 'Saved.'));
         reload().then(function () {
           openMe();
           if (isNew) { var pl = U.place(p); flyToVisible([pl.lat, pl.lng], 10); }
         });
-      }).catch(function (e2) { toast(e2.message || 'Saving failed. Please try again.'); });
+      }).catch(function (e2) { btn.disabled = false; toast(e2.message || 'Saving failed. Please try again.'); });
     });
   }
   function toggle(arr, v) { var i = arr.indexOf(v); if (i >= 0) arr.splice(i, 1); else arr.push(v); }
@@ -607,6 +664,7 @@
   /* ---------- Report ---------- */
   function openReport(id) {
     var p = find(id); if (!p) return;
+    if (p.demo && store.mode !== 'demo') return toast('This is a made-up demo profile. Nothing to report.');
     var reasons = ['Fake or spam', 'Inappropriate content', 'Commercial advertising', 'Something else'];
     var d = openDialog(head('Report ' + esc(p.name)) +
       '<div class="dlg-body"><p class="muted" style="margin-bottom:16px">Thanks for keeping this place friendly. What\'s wrong?</p>' +
@@ -662,8 +720,10 @@
 
   /* ---------- Data ---------- */
   function reload() {
-    return Promise.all([store.listProfiles(), store.getUser() ? store.getMyProfile() : Promise.resolve(null)]).then(function (r) {
-      state.profiles = r[0]; state.me = r[1];
+    var signedIn = !!store.getUser();
+    return Promise.all([store.listProfiles(), signedIn ? store.getMyProfile() : null, store.getSettings(),
+                        signedIn && store.getMyPartnerRequest ? store.getMyPartnerRequest() : null]).then(function (r) {
+      state.profiles = r[0]; state.me = r[1]; state.settings = r[2] || {}; state.partnerRequest = r[3];
       // your own card is always visible to you, even while pending or hidden
       if (state.me && !find(state.me.id)) state.profiles.push(Object.assign({}, state.me, { mine: true }));
       renderMarkers(); renderTopButton(); renderPanel();
@@ -675,16 +735,28 @@
   $('btnMe').addEventListener('click', openMe);
 
   store.onAuth(function (ev) {
+    if (ev === 'PASSWORD_RECOVERY') return openNewPassword();
     reload().then(function () {
       if (ev === 'SIGNED_OUT') { state.view = 'list'; renderList(); toast('Signed out. See you on the water!'); }
       if (ev === 'SIGNED_IN') {
-        if (afterLogin === 'editor' && !state.me) openEditor();
+        if (state.claim && state.me) startClaim(state.claim.id);
         else if (state.me) openMe();
         else openEditor();
         afterLogin = null;
       }
     });
   });
+
+  function openNewPassword() {
+    var d = openDialog(head('Set a new password') + '<div class="dlg-body"><div class="field"><label for="npw">New password</label>' +
+      '<input class="input" id="npw" type="password" minlength="8" autocomplete="new-password"><p class="hint">At least 8 characters.</p></div></div>' +
+      '<div class="dlg-foot"><button class="btn accent" data-save>Save password</button></div>', 'small');
+    d.querySelector('[data-save]').addEventListener('click', function () {
+      var pw = d.querySelector('#npw').value;
+      if (pw.length < 8) return toast('At least 8 characters, please.');
+      store.updatePassword(pw).then(function () { d.close(); toast('Password saved. You\'re signed in.'); reload(); }).catch(function (e) { toast(e.message); });
+    });
+  }
 
   function syncFinderHeight() { panel.style.setProperty('--finder-h', ($('finder').offsetHeight + 4) + 'px'); }
   window.addEventListener('resize', function () { syncFinderHeight(); map.invalidateSize(); });

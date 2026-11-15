@@ -10,14 +10,16 @@
  */
 window.WAF_CONFIG = {
   siteName: 'We Are Foilers',
-  siteUrl: 'https://wearefoilers.com',     // final domain still open
-  supabaseUrl: '',
-  supabaseAnonKey: '',
+  siteUrl: 'https://wearefoilers.com',     // final domain still open; used for the partner share link
+  supabaseUrl: 'https://lbehkomudrhnwmkfiysz.supabase.co',
+  supabaseAnonKey: 'sb_publishable_zY22HgBtv480sLtSojTogg_AwIBLIlg',   // publishable key, safe in the repo
 
   contactEmail: '',                        // shown in the footer, empty = hidden
 
-  /* Feature switches */
-  manualApproval: true,     // new cards need an admin OK before they show on the map (admin can switch this live)
+  /* Feature switches. manualApproval, showDemo and partnerProgram are switched live on the admin page
+     (stored in the database); the values here are only defaults for demo mode. */
+  manualApproval: true,
+  partnerProgram: true,
   shareCard: false,         // shareable card image (phase 2)
 
   /* Private foilers are never shown exactly: their pin is moved by up to this many meters
