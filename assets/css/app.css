@@ -374,3 +374,14 @@ body.admin { background: var(--bg-soft); height: auto; }
 .adm-tabs { grid-auto-columns: auto; overflow-x: auto; }
 .adm-tabs button { white-space: nowrap; padding: 10px 12px; }
 .btn.small svg circle { stroke: none; }
+
+/* ---------- Legal pages ---------- */
+body.legal { background: #fff; }
+.legal .adm { max-width: 720px; }
+.legal h1 { font-size: 32px; margin: 14px 0 18px; }
+.legal h2 { font-size: 19px; margin: 28px 0 8px; }
+.legal h3 { font-size: 15.5px; margin: 18px 0 4px; }
+.legal p, .legal li { color: var(--ink-2); margin: 0 0 10px; }
+.legal ul { padding-left: 20px; }
+.legal .small { font-size: 12.5px; margin-top: 30px; }
+.todo { background: var(--sun-soft); color: #A86800; padding: 1px 6px; border-radius: 6px; font-weight: 700; }

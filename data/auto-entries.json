@@ -1,0 +1,202 @@
+[
+ {
+  "name": "Alex Pastor Kite Club",
+  "type": "school",
+  "label": "Tarifa, Spain",
+  "q": "Playa de Valdevaqueros, Tarifa",
+  "web": "https://alexpastorkiteclub.com",
+  "disc": "kite:4,wing:4",
+  "lat": 36.06312,
+  "lng": -5.67945
+ },
+ {
+  "name": "Kitefun Tarifa",
+  "type": "school",
+  "label": "Tarifa, Spain",
+  "q": "Tarifa, Cádiz, Spain",
+  "web": "https://kitefuntarifa.com",
+  "disc": "kite:4,wing:4",
+  "lat": 36.01291,
+  "lng": -5.60502
+ },
+ {
+  "name": "Tarifa Spin Out",
+  "type": "school",
+  "label": "Tarifa, Spain",
+  "q": "Valdevaqueros, Tarifa",
+  "web": "https://www.tarifaspinout.com",
+  "disc": "windfoil:4,wing:4",
+  "lat": 36.06617,
+  "lng": -5.68139
+ },
+ {
+  "name": "Flag Beach",
+  "type": "school",
+  "label": "Corralejo, Fuerteventura",
+  "q": "Corralejo, Fuerteventura",
+  "web": "https://www.flagbeach.com",
+  "disc": "kite:4,wing:4",
+  "lat": 28.72922,
+  "lng": -13.87252
+ },
+ {
+  "name": "René Egli",
+  "type": "school",
+  "label": "Sotavento, Fuerteventura",
+  "q": "Playa de Sotavento de Jandía",
+  "web": "https://www.rene-egli.com",
+  "disc": "windfoil:4,wing:4,kite:4",
+  "lat": 28.1449,
+  "lng": -14.2266
+ },
+ {
+  "name": "Azul Kiteboarding",
+  "type": "school",
+  "label": "El Médano, Tenerife",
+  "q": "El Médano, Tenerife",
+  "web": "https://www.azulkiteboarding.com",
+  "disc": "kite:4,wing:4",
+  "lat": 28.0466,
+  "lng": -16.5371
+ },
+ {
+  "name": "Vasco Renna Surf Center",
+  "type": "school",
+  "label": "Torbole, Lake Garda",
+  "q": "Torbole, Nago-Torbole",
+  "web": "https://www.vascorenna.com",
+  "disc": "windfoil:4,wing:4",
+  "lat": 45.8704,
+  "lng": 10.8742
+ },
+ {
+  "name": "Surf Segnana",
+  "type": "school",
+  "label": "Torbole, Lake Garda",
+  "q": "Torbole sul Garda",
+  "web": "https://surfsegnana.it",
+  "disc": "windfoil:4,wing:4",
+  "lat": 45.8688,
+  "lng": 10.8772
+ },
+ {
+  "name": "Wingfoil Surfschule Fehmarn",
+  "type": "school",
+  "label": "Fehmarn, Germany",
+  "q": "Fehmarn, Germany",
+  "web": "https://wingfoil-fehmarn.de",
+  "disc": "wing:4",
+  "lat": 54.46852,
+  "lng": 11.13425
+ },
+ {
+  "name": "KBC Brouwersdam",
+  "type": "school",
+  "label": "Brouwersdam, Netherlands",
+  "q": "Brouwersdam, Netherlands",
+  "web": "https://www.kiteboarding-club.com/en/brouwersdam/",
+  "disc": "kite:4,wing:4",
+  "lat": 51.7697,
+  "lng": 3.8622
+ },
+ {
+  "name": "Cascade Kiteboarding",
+  "type": "school",
+  "label": "Hood River, Oregon",
+  "q": "Hood River, Oregon",
+  "web": "https://www.cascadekiteboarding.com",
+  "disc": "kite:4,wing:4",
+  "lat": 45.7131,
+  "lng": -121.5163
+ },
+ {
+  "name": "Brian's Windsurfing & Kiteboarding",
+  "type": "school",
+  "label": "Hood River, Oregon",
+  "q": "Hood River, Oregon",
+  "web": "https://www.brianswindsurfing.com",
+  "disc": "windfoil:4,wing:4,kite:4",
+  "lat": 45.7126,
+  "lng": -121.5152
+ },
+ {
+  "name": "Windance",
+  "type": "shop",
+  "label": "Hood River, Oregon",
+  "q": "Hood River, Oregon",
+  "web": "https://www.windance.com",
+  "disc": "wing:4,windfoil:4,kite:4,sup:4",
+  "lat": 45.7088,
+  "lng": -121.5172
+ },
+ {
+  "name": "HST Windsurfing & Kitesurfing",
+  "type": "school",
+  "label": "Kahului, Maui",
+  "q": "Kanaha Beach Park, Maui",
+  "web": "https://hstwindsurfing.com",
+  "disc": "windfoil:4,kite:4,wing:4",
+  "lat": 20.9005,
+  "lng": -156.43878
+ },
+ {
+  "name": "Second Wind Maui",
+  "type": "shop",
+  "label": "Kahului, Maui",
+  "q": "Kahului, Maui",
+  "web": "https://www.secondwindmaui.com",
+  "disc": "wing:4,windfoil:4,kite:4",
+  "lat": 20.88941,
+  "lng": -156.47271
+ },
+ {
+  "name": "Dakhla Attitude",
+  "type": "school",
+  "label": "Dakhla, Morocco",
+  "q": "Dakhla, Morocco",
+  "web": "https://dakhla-attitude.ma",
+  "disc": "kite:4,wing:4",
+  "lat": 23.69407,
+  "lng": -15.94313
+ },
+ {
+  "name": "Club Ventos",
+  "type": "school",
+  "label": "Jericoacoara, Brazil",
+  "q": "Jericoacoara, Ceará, Brazil",
+  "web": "https://clubventos.com/en/",
+  "disc": "kite:4,wing:4",
+  "lat": -2.7951,
+  "lng": -40.5133
+ },
+ {
+  "name": "Kitesailing Silvaplana",
+  "type": "school",
+  "label": "Silvaplana, Switzerland",
+  "q": "Silvaplana, Switzerland",
+  "web": "https://kitesailing.ch",
+  "disc": "kite:4,wing:4",
+  "lat": 46.45993,
+  "lng": 9.79592
+ },
+ {
+  "name": "Constantly Kiting",
+  "type": "school",
+  "label": "Langebaan, South Africa",
+  "q": "Langebaan, Western Cape, South Africa",
+  "web": "https://constantlykiting.com",
+  "disc": "kite:4,wing:4",
+  "lat": -33.09072,
+  "lng": 18.03489
+ },
+ {
+  "name": "KBL Sports",
+  "type": "shop",
+  "label": "Botany Bay, Sydney",
+  "q": "Brighton-Le-Sands, Sydney",
+  "web": "https://www.kblsports.com.au",
+  "disc": "wing:4,kite:4",
+  "lat": -33.95809,
+  "lng": 151.15261
+ }
+]

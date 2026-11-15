@@ -84,7 +84,7 @@
 
     var gear = (p.gear || []).slice(); if (p.gearOther) gear.push(p.gearOther);
     if (gear.length) h += '<p class="gear">' + I.foil + '<span>Rides ' + gear.map(esc).join(' · ') + '</span></p>';
-    if (p.about) h += '<p class="about">“' + esc(p.about) + '”</p>';
+    if (p.about) h += p.isAuto ? '<p class="about">' + esc(p.about) + '</p>' : '<p class="about">“' + esc(p.about) + '”</p>';
     if (p.type !== 'private' && p.hours) h += '<p class="gear">' + I.clock + '<span>' + esc(p.hours) + '</span></p>';
 
     var a = '';
