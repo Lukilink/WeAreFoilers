@@ -241,11 +241,9 @@ dialog.small .dlg-body { flex: none; }
 .tdot.t-school { background: var(--sun); }
 .tdot.t-shop { background: var(--ink-2); }
 .chip.on .tdot, .tbtn.on .tdot { box-shadow: 0 0 0 2px #fff; }
-.filter-icon { position: relative; }
-.filter-icon.on { background: var(--ink); color: #fff; }
-.filter-icon .count { position: absolute; top: -3px; right: -3px; background: var(--accent); color: #fff; border-radius: 99px; font-size: 10.5px; font-weight: 800;
-  min-width: 17px; height: 17px; display: grid; place-items: center; padding: 0 4px; box-shadow: 0 0 0 2px #fff; }
-.chip.active-f { background: var(--accent-soft); color: var(--accent-ink); padding-right: 9px; }
+.chip.add-filter.on { background: var(--ink); color: #fff; }
+.chip.add-filter .count { margin-left: 2px; }
+.chip.active-f { background: var(--accent-soft); color: var(--accent-ink); padding-right: 9px; box-shadow: var(--shadow-sm); }
 .chip.active-f svg { width: 13px; height: 13px; opacity: .7; }
 .filters { padding-top: 14px; }
 .type-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px; }

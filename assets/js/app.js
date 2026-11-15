@@ -105,12 +105,14 @@
     }).join('');
   }
   function renderChips() {
-    var f = state.filters, n = moreCount();
-    var h = typeButtons('chip');
-    $('btnFilter').innerHTML = I.filter + (n ? '<span class="count">' + n + '</span>' : '');
-    $('btnFilter').classList.toggle('on', n > 0);
-    $('btnFilter').setAttribute('aria-label', n ? 'Filters, ' + n + ' active' : 'Filters');
+    var f = state.filters, n = f.types.length + moreCount();
+    var h = '<button class="chip add-filter' + (n ? ' on' : '') + '" data-more="1" aria-label="' + (n ? 'Filters, ' + n + ' active' : 'Add filters') + '">' +
+      I.filter + 'Add filters' + (n ? '<span class="count">' + n + '</span>' : '') + '</button>';
     // active filters as quick-remove pills
+    f.types.forEach(function (id) {
+      var t = U.byId(C.types, id);
+      h += '<button class="chip active-f" data-rm="types" data-v="' + id + '" aria-label="Remove filter ' + t.plural + '"><i class="tdot t-' + id + '"></i>' + t.plural + I.close + '</button>';
+    });
     GROUPS.forEach(function (g) {
       f[g.key].forEach(function (id) {
         h += '<button class="chip active-f" data-rm="' + g.key + '" data-v="' + esc(id) + '" aria-label="Remove filter ' + esc(itemLabel(g.key, id)) + '">' + esc(itemLabel(g.key, id)) + I.close + '</button>';
@@ -122,12 +124,10 @@
   $('chips').addEventListener('click', function (e) {
     var b = e.target.closest('.chip'); if (!b) return;
     if (b.dataset.more) return openFilters();
-    if (b.dataset.typeF) toggleIn(state.filters.types, b.dataset.typeF);
-    else if (b.dataset.rm) toggleIn(state.filters[b.dataset.rm], b.dataset.v);
+    if (b.dataset.rm) toggleIn(state.filters[b.dataset.rm], b.dataset.v);
     refresh();
   });
 
-  $('btnFilter').addEventListener('click', function () { openFilters(); });
   function openFilters() {
     var f = state.filters;
     function groupHtml(g, open) {
