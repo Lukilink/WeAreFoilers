@@ -204,7 +204,7 @@
   "type": "shop",
   "label": "Düsseldorf, Germany",
   "q": "Lorettostraße 12, 40219 Düsseldorf-Stadtbezirk 3, Germany",
-  "web": "http://www.you-love-it.eu/",
+  "web": "https://www.you-love-it.eu/",
   "disc": "wing:4,efoil:4,kite:4,windfoil:4,prone:4,parawing:4,foil-assist:4,sup:4",
   "lat": 51.21449,
   "lng": 6.7668
@@ -214,7 +214,7 @@
   "type": "school",
   "label": "Hyères, France",
   "q": "2639 Rte de la Madrague, 83400 Hyères, France",
-  "web": "http://www.mfkite.com/",
+  "web": "https://www.mfkite.com/",
   "disc": "wing:4,efoil:4,kite:4,parawing:4,sup:4",
   "lat": 43.03843,
   "lng": 6.11806
@@ -254,7 +254,7 @@
   "type": "school",
   "label": "Limone Sul Garda, Italy",
   "q": "Beach of Leonardo Davinci, Via IV Novembre, 3, 25010 Limone Sul Garda BS, Italy",
-  "web": "http://www.windriders.eu/",
+  "web": "https://www.windriders.eu/",
   "disc": "wing:4",
   "lat": 45.80245,
   "lng": 10.78717
@@ -274,7 +274,7 @@
   "type": "school",
   "label": "Manerba del Garda, Italy",
   "q": "Via Belvedere, 25080 Manerba del Garda BS, Italy",
-  "web": "http://yourwave.it/",
+  "web": "https://yourwave.it/",
   "disc": "wing:4,efoil:4,kite:4,pump:4,prone:4",
   "lat": 45.56165,
   "lng": 10.56033
@@ -284,7 +284,7 @@
   "type": "school",
   "label": "La Ventana, Mexico",
   "q": "Corredor Isla Cerralvo s/n, 23232 La Ventana, B.C.S., Mexico",
-  "web": "http://playacentralkiteboarding.com/",
+  "web": "https://playacentralkiteboarding.com/",
   "disc": "wing:4,parawing:4",
   "lat": 24.05343,
   "lng": -109.98932
@@ -294,7 +294,7 @@
   "type": "school",
   "label": "Norden, Germany",
   "q": "Badestraße, 26506 Norden, Germany",
-  "web": "http://www.surfschule-norddeich.de/",
+  "web": "https://www.surfschule-norddeich.de/",
   "disc": "wing:4",
   "lat": 53.6191,
   "lng": 7.15236
@@ -324,7 +324,7 @@
   "type": "school",
   "label": "Überlingen, Germany",
   "q": "Strandweg 22, 88662 Überlingen, Germany",
-  "web": "http://surfschulebodensee.de/",
+  "web": "https://surfschulebodensee.de/",
   "disc": "wing:4",
   "lat": 47.75972,
   "lng": 9.17413
@@ -334,7 +334,7 @@
   "type": "school",
   "label": "Dierhagen, Germany",
   "q": "Hafenstraße 10A, 18347 Dierhagen, Germany",
-  "web": "http://www.loop-in.net/",
+  "web": "https://www.loop-in.net/",
   "disc": "wing:4",
   "lat": 54.29382,
   "lng": 12.36232
@@ -344,7 +344,7 @@
   "type": "school",
   "label": "Naxos, Greece",
   "q": "Aristidi Protopapadaki, Naxos 843 00, Greece",
-  "web": "http://www.flisvos-sportclub.com/",
+  "web": "https://www.flisvos-sportclub.com/",
   "disc": "wing:4",
   "lat": 37.0926,
   "lng": 25.3737
@@ -354,7 +354,7 @@
   "type": "school",
   "label": "Naxos, Greece",
   "q": "Naxou, Naxos 843 00, Greece",
-  "web": "http://www.ridewiththegods.com/",
+  "web": "https://www.ridewiththegods.com/",
   "disc": "wing:4",
   "lat": 37.01729,
   "lng": 25.37775
@@ -364,7 +364,7 @@
   "type": "shop",
   "label": "Oldenburg, Germany",
   "q": "Ammergaustraße 10, 26123 Oldenburg (Oldb), Germany",
-  "web": "http://www.wsm-surf-snow.de/",
+  "web": "https://www.wsm-surf-snow.de/",
   "disc": "wing:4",
   "lat": 53.16218,
   "lng": 8.22558
@@ -394,7 +394,7 @@
   "type": "school",
   "label": "Münsing, Germany",
   "q": "Buchscharnstraße 10, 82541 Münsing-St. Heinrich, Germany",
-  "web": "http://www.surfschule-starnbergersee.de/",
+  "web": "https://www.surfschule-starnbergersee.de/",
   "disc": "wing:4",
   "lat": 47.82581,
   "lng": 11.33687
@@ -414,7 +414,7 @@
   "type": "school",
   "label": "Saint-Laurent-de-la-Salanque, France",
   "q": "1587 Las Clots, 66250 Saint-Laurent-de-la-Salanque, France",
-  "web": "http://www.kiteschool-leucate.com/",
+  "web": "https://www.kiteschool-leucate.com/",
   "disc": "wing:4,efoil:4",
   "lat": 42.80019,
   "lng": 2.99557
@@ -504,7 +504,7 @@
   "type": "school",
   "label": "Olbia, Italy",
   "q": "Via Su Calvone, 07026 Olbia OT, Italy",
-  "web": "http://sardiniakiteschool.net/",
+  "web": "https://sardiniakiteschool.net/",
   "disc": "wing:4,kite:4,parawing:4",
   "lat": 40.90801,
   "lng": 9.57121
@@ -534,7 +534,7 @@
   "type": "school",
   "label": "St. Peter-Ording, Germany",
   "q": "Wittendüner Allee 22, 25826 St. Peter-Ording, Germany",
-  "web": "http://kitekurs.net/",
+  "web": "https://kitekurs.net/",
   "disc": "wing:4",
   "lat": 54.30262,
   "lng": 8.65432
@@ -544,7 +544,7 @@
   "type": "school",
   "label": "Mönchgut, Germany",
   "q": "Dörpstrat 35, 18586 Mönchgut-Thiessow, Germany",
-  "web": "http://www.proboarding.de/",
+  "web": "https://www.proboarding.de/",
   "disc": "wing:4",
   "lat": 54.27924,
   "lng": 13.69846
@@ -554,7 +554,7 @@
   "type": "school",
   "label": "Le Barcarès, France",
   "q": "Parc Des Dosses, Av. des Dosses, 66420 Le Barcarès, France",
-  "web": "http://www.surfandkite.fr/",
+  "web": "https://www.surfandkite.fr/",
   "disc": "wing:4,efoil:4",
   "lat": 42.83721,
   "lng": 3.02347
@@ -564,7 +564,7 @@
   "type": "shop",
   "label": "Hamminkeln, Germany",
   "q": "Zum Weißenstein 41, 46499 Hamminkeln, Germany",
-  "web": "http://www.windsucht.de/",
+  "web": "https://www.windsucht.de/",
   "disc": "wing:4,kite:4,windfoil:4,pump:4,prone:4,parawing:4,sup:4",
   "lat": 51.72183,
   "lng": 6.59549
@@ -574,7 +574,7 @@
   "type": "school",
   "label": "Essen, Germany",
   "q": "Freiherr-vom-Stein-Straße 384, 45134 Essen, Germany",
-  "web": "http://www.pottpaddler.de/",
+  "web": "https://www.pottpaddler.de/",
   "disc": "wing:4,kite:4",
   "lat": 51.40632,
   "lng": 7.01873
@@ -594,7 +594,7 @@
   "type": "school",
   "label": "Saal, Germany",
   "q": "Kiteschule & Verleihstation, Kajak & SUP, schwarzer Doppeldecker-Bus, Am Bodden, 18317 Saal, Germany",
-  "web": "http://www.kitemafia.de/",
+  "web": "https://www.kitemafia.de/",
   "disc": "wing:4",
   "lat": 54.31178,
   "lng": 12.47998
@@ -654,7 +654,7 @@
   "type": "shop",
   "label": "Dresden, Germany",
   "q": "Lauensteiner Str. 37, 01277 Dresden-Blasewitz, Germany",
-  "web": "http://www.wildeast.de/",
+  "web": "https://www.wildeast.de/",
   "disc": "wing:4,parawing:4",
   "lat": 51.03838,
   "lng": 13.80159
@@ -674,7 +674,7 @@
   "type": "shop",
   "label": "Fehmarn, Germany",
   "q": "Hauptstraße 44, 23769 Fehmarn-Landkirchen, Germany",
-  "web": "http://www.surfshopfehmarn.de/",
+  "web": "https://www.surfshopfehmarn.de/",
   "disc": "wing:4,windfoil:4,prone:4,parawing:4,sup:4",
   "lat": 54.45281,
   "lng": 11.14628
@@ -684,7 +684,7 @@
   "type": "school",
   "label": "Neustadt, Germany",
   "q": "Auf d. Pelzerwiese 24, 23730 Neustadt in Holstein-Pelzerhaken, Germany",
-  "web": "http://www.sailandsurf.de/",
+  "web": "https://www.sailandsurf.de/",
   "disc": "wing:4",
   "lat": 54.08789,
   "lng": 10.87351
@@ -694,7 +694,7 @@
   "type": "school",
   "label": "Campione, Italy",
   "q": "Via Riccardo Cozzaglio, 25010 Campione BS, Italy",
-  "web": "http://www.gardakitesurf.com/",
+  "web": "https://www.gardakitesurf.com/",
   "disc": "wing:4",
   "lat": 45.7561,
   "lng": 10.75039
@@ -714,7 +714,7 @@
   "type": "shop",
   "label": "Halstenbek, Germany",
   "q": "Gewerbering 3, 25469 Halstenbek, Germany",
-  "web": "http://www.kitetiki.com/",
+  "web": "https://www.kitetiki.com/",
   "disc": "wing:4,efoil:4,kite:4,windfoil:4,pump:4,prone:4,parawing:4,sup:4",
   "lat": 53.62572,
   "lng": 9.86643
@@ -724,7 +724,7 @@
   "type": "school",
   "label": "Sant'Antioco, Italy",
   "q": "Via Ciusa, 09017 Sant'Antioco SU, Italy",
-  "web": "http://www.sabarra.it/",
+  "web": "https://www.sabarra.it/",
   "disc": "wing:4,efoil:4",
   "lat": 39.09157,
   "lng": 8.4414
@@ -834,7 +834,7 @@
   "type": "school",
   "label": "Prasonisi, Rhodes",
   "q": "Πρασονήσι 851 09, Greece",
-  "web": "http://www.prasonisicenter.com/",
+  "web": "https://www.prasonisicenter.com/",
   "disc": "wing:4",
   "lat": 35.89036,
   "lng": 27.77542
@@ -844,7 +844,7 @@
   "type": "school",
   "label": "Costa Calma, Fuerteventura",
   "q": "Fuerteventura, 35628 Fuerteventura, Las Palmas, Spain",
-  "web": "http://salaowatersportsfuerte.com/",
+  "web": "https://salaowatersportsfuerte.com/",
   "disc": "wing:4",
   "lat": 28.11606,
   "lng": -14.26847
@@ -854,7 +854,7 @@
   "type": "shop",
   "label": "Duisburg, Germany",
   "q": "Friedrich-Ebert-Straße 70-74, 47226 Rheinhausen, Germany",
-  "web": "http://www.surf-sport.de/",
+  "web": "https://www.surf-sport.de/",
   "disc": "wing:4,efoil:4,kite:4,foil-assist:4",
   "lat": 51.41018,
   "lng": 6.71196
@@ -884,7 +884,7 @@
   "type": "shop",
   "label": "Cabarete, Dominican Republic",
   "q": "5km - Cabarete Beach, Cabarete 57000, Dominican Republic",
-  "web": "http://www.progresskitesurf.com/",
+  "web": "https://www.progresskitesurf.com/",
   "disc": "wing:4",
   "lat": 19.751,
   "lng": -70.41122
@@ -904,7 +904,7 @@
   "type": "school",
   "label": "Torbole sul Garda, Italy",
   "q": "Via Lungolago Conca d'Oro, 12, 38069 Torbole sul Garda TN, Italy",
-  "web": "http://www.dpc-torbole.com/",
+  "web": "https://www.dpc-torbole.com/",
   "disc": "wing:4,efoil:4,kite:4,windfoil:4,prone:4,parawing:4,foil-assist:4",
   "lat": 45.86207,
   "lng": 10.87537
@@ -914,7 +914,7 @@
   "type": "school",
   "label": "Norderney, Germany",
   "q": "Am Hansendamm 0, 26548 Norderney, Germany",
-  "web": "http://www.surfschule-norderney.de/",
+  "web": "https://www.surfschule-norderney.de/",
   "disc": "wing:4,windfoil:4,prone:4",
   "lat": 53.70305,
   "lng": 7.16844
@@ -924,7 +924,7 @@
   "type": "school",
   "label": "Born a. Darß, Germany",
   "q": "Nordstraße 86, 18375 Born a. Darß, Germany",
-  "web": "http://www.surf-schuppen.de/",
+  "web": "https://www.surf-schuppen.de/",
   "disc": "wing:4,efoil:4",
   "lat": 54.382,
   "lng": 12.50231
@@ -934,7 +934,7 @@
   "type": "shop",
   "label": "Herrsching, Germany",
   "q": "Bahnhofstraße 22, 82211 Herrsching am Ammersee, Germany",
-  "web": "http://www.hang-five.de/",
+  "web": "https://www.hang-five.de/",
   "disc": "wing:4,efoil:4,sup:4",
   "lat": 47.99884,
   "lng": 11.1733
@@ -944,7 +944,7 @@
   "type": "shop",
   "label": "Fehmarn, Germany",
   "q": "Severitenkamp 7, 23769 Fehmarn, Germany",
-  "web": "http://www.fone-pro-shop.de/",
+  "web": "https://www.fone-pro-shop.de/",
   "disc": "wing:4,kite:4,foil-assist:4,sup:4",
   "lat": 54.44756,
   "lng": 11.18313
@@ -964,7 +964,7 @@
   "type": "school",
   "label": "Famara, Lanzarote",
   "q": "C. Chirimoya, 3, 35558 Caleta de Famara, Las Palmas, Spain",
-  "web": "http://watermanlanzarote.com/",
+  "web": "https://watermanlanzarote.com/",
   "disc": "wing:4",
   "lat": 29.11335,
   "lng": -13.54861
@@ -994,7 +994,7 @@
   "type": "school",
   "label": "Timmendorfer Strand, Germany",
   "q": "Durchgang zum Strand, Strandallee 11, 23669 Timmendorfer Strand, Germany",
-  "web": "http://www.surfschule-timmendorf.de/",
+  "web": "https://www.surfschule-timmendorf.de/",
   "disc": "wing:4",
   "lat": 54.00822,
   "lng": 10.77324
@@ -1064,7 +1064,7 @@
   "type": "school",
   "label": "Hüde, Germany",
   "q": "Rohrdommelweg 36, 49448 Hüde, Germany",
-  "web": "http://www.surfschule-duemmersee.de/",
+  "web": "https://www.surfschule-duemmersee.de/",
   "disc": "wing:4",
   "lat": 52.50209,
   "lng": 8.3538
@@ -1074,7 +1074,7 @@
   "type": "shop",
   "label": "Markkleeberg, Germany",
   "q": "Apelsteinallee 18, 04416 Markkleeberg-Wachau, Germany",
-  "web": "http://www.surfshop24.de/",
+  "web": "https://www.surfshop24.de/",
   "disc": "wing:4,efoil:4,kite:4,windfoil:4,pump:4,prone:4,sup:4",
   "lat": 51.28031,
   "lng": 12.42523
@@ -1094,7 +1094,7 @@
   "type": "school",
   "label": "Haarlem, Netherlands",
   "q": "Mooie Nelpad, 2031 AK Haarlem, Netherlands",
-  "web": "http://www.wingfoilhaarlem.nl/",
+  "web": "https://www.wingfoilhaarlem.nl/",
   "disc": "wing:4",
   "lat": 52.40474,
   "lng": 4.66782
@@ -1114,7 +1114,7 @@
   "type": "school",
   "label": "Rerik, Germany",
   "q": "Plattform auf dem Steg am Salzhaff, 18230 Rerik, Germany",
-  "web": "http://www.oceanbluewatersports.de/",
+  "web": "https://www.oceanbluewatersports.de/",
   "disc": "wing:4",
   "lat": 54.10299,
   "lng": 11.61306
@@ -1124,7 +1124,7 @@
   "type": "school",
   "label": "Altenkirchen, Germany",
   "q": "Campingplatz Drewoldke, Zittkower Weg 27, 18556 Altenkirchen, Germany",
-  "web": "http://www.fly-a-kite.de/",
+  "web": "https://www.fly-a-kite.de/",
   "disc": "kite:4",
   "lat": 54.63426,
   "lng": 13.375
@@ -1144,7 +1144,7 @@
   "type": "school",
   "label": "Plouescat, France",
   "q": "Keremma 48.650529, 97 rue de Brest 4.235238, 29430 Plouescat, France",
-  "web": "http://ecolekitesurfbretagne.com/",
+  "web": "https://ecolekitesurfbretagne.com/",
   "disc": "wing:4",
   "lat": 48.65051,
   "lng": -4.2352
@@ -1174,7 +1174,7 @@
   "type": "school",
   "label": "Leucate, France",
   "q": "19 Av. de la Méditerranée, 11370 Leucate, France",
-  "web": "http://www.f400school.fr/",
+  "web": "https://www.f400school.fr/",
   "disc": "wing:4",
   "lat": 42.93186,
   "lng": 3.03715
@@ -1184,7 +1184,7 @@
   "type": "school",
   "label": "Großenbrode, Germany",
   "q": "Am Kai 21, 23775 Großenbrode, Germany",
-  "web": "http://watersports4all.de/",
+  "web": "https://watersports4all.de/",
   "disc": "wing:4,kite:4,parawing:4",
   "lat": 54.35366,
   "lng": 11.08188
@@ -1204,7 +1204,7 @@
   "type": "school",
   "label": "Allensbach, Germany",
   "q": "Strandweg 30, 78476 Allensbach, Germany",
-  "web": "http://www.treibgutsurf.de/",
+  "web": "https://www.treibgutsurf.de/",
   "disc": "wing:4",
   "lat": 47.7103,
   "lng": 9.07976
@@ -1214,7 +1214,7 @@
   "type": "school",
   "label": "Büsum, Germany",
   "q": "Familienlagune Watt´n Insel, 25761 Büsum, Germany",
-  "web": "http://www.wassersport-buesum.de/",
+  "web": "https://www.wassersport-buesum.de/",
   "disc": "wing:4",
   "lat": 54.13386,
   "lng": 8.83737
@@ -1224,7 +1224,7 @@
   "type": "school",
   "label": "Perth, Australia",
   "q": "Woodman Point View, Munster WA 6166, Australia",
-  "web": "http://kingwing.com.au/",
+  "web": "https://kingwing.com.au/",
   "disc": "wing:4",
   "lat": -32.13481,
   "lng": 115.74701
@@ -1234,7 +1234,7 @@
   "type": "shop",
   "label": "Augsburg, Germany",
   "q": "Georg-Brach-Straße 4, 86152 Pfersee, Germany",
-  "web": "http://www.surf-snowcenter.de/",
+  "web": "https://www.surf-snowcenter.de/",
   "disc": "wing:4,windfoil:4",
   "lat": 48.36664,
   "lng": 10.88008
@@ -1254,7 +1254,7 @@
   "type": "school",
   "label": "Würzburg, Germany",
   "q": "Winterhäuser Str. 160, 97084 Würzburg, Germany",
-  "web": "http://www.efoil-riders.com/",
+  "web": "https://www.efoil-riders.com/",
   "disc": "efoil:4,foil-assist:4",
   "lat": 49.74449,
   "lng": 9.98522
@@ -1274,7 +1274,7 @@
   "type": "school",
   "label": "Wasserburg (Bodensee), Germany",
   "q": "Reutener Str. 12, 88142 Wasserburg (Bodensee), Germany",
-  "web": "http://www.surfschule-wasserburg.de/",
+  "web": "https://www.surfschule-wasserburg.de/",
   "disc": "wing:4,windfoil:4,prone:4",
   "lat": 47.56658,
   "lng": 9.64139
@@ -1304,7 +1304,7 @@
   "type": "school",
   "label": "Bari Sardo, Italy",
   "q": "spiaggia planargia c/o camping villaggio l'ultima spiaggia, 08042 Bari Sardo OG, Italy",
-  "web": "http://www.sportsparadise-kitesurf.com/bari-sardo",
+  "web": "https://www.sportsparadise-kitesurf.com/bari-sardo",
   "disc": "wing:4",
   "lat": 39.81649,
   "lng": 9.6755
@@ -1354,7 +1354,7 @@
   "type": "school",
   "label": "Berlin, Germany",
   "q": "Werderstraße 51b, 13587 Bezirk Spandau, Germany",
-  "web": "http://www.lets-foil.de/",
+  "web": "https://www.lets-foil.de/",
   "disc": "efoil:4",
   "lat": 52.5671,
   "lng": 13.22563
@@ -1364,7 +1364,7 @@
   "type": "school",
   "label": "Brest, France",
   "q": "maison du nautisme, Port de Plaisance du Moulin Blanc, 29200 Brest, France",
-  "web": "http://www.seawindfoil.com/",
+  "web": "https://www.seawindfoil.com/",
   "disc": "wing:4,windfoil:4",
   "lat": 48.39166,
   "lng": -4.43475
@@ -1414,7 +1414,7 @@
   "type": "school",
   "label": "Rerik, Germany",
   "q": "Am Haff 2, 18230 Rerik, Germany",
-  "web": "http://www.surfschule-rerik.de/",
+  "web": "https://www.surfschule-rerik.de/",
   "disc": "wing:4",
   "lat": 54.10206,
   "lng": 11.61556
@@ -1434,7 +1434,7 @@
   "type": "school",
   "label": "Auckland, New Zealand",
   "q": "Water's Edge In, Sylvan Park, 0620, New Zealand",
-  "web": "http://www.madloop.co.nz/",
+  "web": "https://www.madloop.co.nz/",
   "disc": "wing:4,windfoil:4",
   "lat": -36.77759,
   "lng": 174.76943
@@ -1454,7 +1454,7 @@
   "type": "shop",
   "label": "Rosenheim, Germany",
   "q": "Kolbermoorer Str. 16, 83026 Rosenheim, Germany",
-  "web": "http://www.element-sports.de/",
+  "web": "https://www.element-sports.de/",
   "disc": "wing:4,efoil:4,pump:4,parawing:4",
   "lat": 47.84978,
   "lng": 12.08782
@@ -1464,7 +1464,7 @@
   "type": "school",
   "label": "Looe, UK",
   "q": "Looe Hill, Looe PL13 1NZ, United Kingdom",
-  "web": "http://www.efoilcornwall.co.uk/",
+  "web": "https://www.efoilcornwall.co.uk/",
   "disc": "efoil:4",
   "lat": 50.35929,
   "lng": -4.43976
@@ -1484,7 +1484,7 @@
   "type": "school",
   "label": "Berlin, Germany",
   "q": "Müggelseedamm 216, 12587 Berlin, Germany",
-  "web": "http://www.nalani-supsurfing.com/",
+  "web": "https://www.nalani-supsurfing.com/",
   "disc": "wing:4,pump:4",
   "lat": 52.44557,
   "lng": 13.63071
@@ -1514,7 +1514,7 @@
   "type": "school",
   "label": "La Ventana, Mexico",
   "q": "Corredor Isla Cerralvo S/N, 23232 La Ventana, B.C.S., Mexico",
-  "web": "http://www.evolutionkiteboarding.com/",
+  "web": "https://www.evolutionkiteboarding.com/",
   "disc": "wing:4",
   "lat": 24.0571,
   "lng": -109.98847
@@ -1524,7 +1524,7 @@
   "type": "school",
   "label": "Kiel, Germany",
   "q": "Falckensteiner Strand 87, 24159 Schilksee, Germany",
-  "web": "http://www.westwind-kiel.de/",
+  "web": "https://www.westwind-kiel.de/",
   "disc": "wing:4,efoil:4",
   "lat": 54.40623,
   "lng": 10.18916
@@ -1534,7 +1534,7 @@
   "type": "shop",
   "label": "Andechs, Germany",
   "q": "Kerschlacher Weg 1, 82346 Andechs-Erling, Germany",
-  "web": "http://www.surfstadl.de/",
+  "web": "https://www.surfstadl.de/",
   "disc": "windfoil:4,prone:4,sup:4",
   "lat": 47.96639,
   "lng": 11.18505
@@ -1554,7 +1554,7 @@
   "type": "school",
   "label": "Famara, Lanzarote",
   "q": "C. San Borondón, 28, 35558 Caleta de Famara, Las Palmas, Spain",
-  "web": "http://www.lanzarotekite.com/",
+  "web": "https://www.lanzarotekite.com/",
   "disc": "wing:4,parawing:4,foil-assist:4",
   "lat": 29.11743,
   "lng": -13.5656
@@ -1564,7 +1564,7 @@
   "type": "school",
   "label": "Seefeld, Germany",
   "q": "Am Pilsensee 2, 82229 Seefeld, Germany",
-  "web": "http://www.bavarianwaters.com/",
+  "web": "https://www.bavarianwaters.com/",
   "disc": "wing:4,pump:4",
   "lat": 48.03072,
   "lng": 11.19643
@@ -1574,7 +1574,7 @@
   "type": "school",
   "label": "Playa Blanca, Lanzarote",
   "q": "Marina Rubicon, C. el Berrugo, 2, 35580 Playa Blanca, Las Palmas, Spain",
-  "web": "http://www.oceanridesailing.com/",
+  "web": "https://www.oceanridesailing.com/",
   "disc": "wing:4",
   "lat": 28.85837,
   "lng": -13.81732
@@ -1614,7 +1614,7 @@
   "type": "school",
   "label": "Arinaga, Gran Canaria",
   "q": "C. Juan de Austria, 3, 35118 Arinaga, Las Palmas, Spain",
-  "web": "http://www.grancanariawingfoil.com/",
+  "web": "https://www.grancanariawingfoil.com/",
   "disc": "wing:4,prone:4,sup:4",
   "lat": 27.8573,
   "lng": -15.39645
@@ -1624,7 +1624,7 @@
   "type": "school",
   "label": "Wunstorf, Germany",
   "q": "Hafenstraße 7a, 31515 Wunstorf-Steinhude, Germany",
-  "web": "http://www.fun-wave-steinhude.de/",
+  "web": "https://www.fun-wave-steinhude.de/",
   "disc": "wing:4",
   "lat": 52.46159,
   "lng": 9.3657
@@ -1634,7 +1634,7 @@
   "type": "shop",
   "label": "Greifswald, Germany",
   "q": "Lange Str. 35, 17489 Greifswald, Germany",
-  "web": "http://www.boardway.org/",
+  "web": "https://www.boardway.org/",
   "disc": "wing:4",
   "lat": 54.09586,
   "lng": 13.37456
@@ -1644,7 +1644,7 @@
   "type": "school",
   "label": "Göhren-Lebbin, Germany",
   "q": "Waldweg 30, 17213 Göhren-Lebbin-Untergöhren, Germany",
-  "web": "http://www.wassersport-fleesensee.de/",
+  "web": "https://www.wassersport-fleesensee.de/",
   "disc": "wing:4",
   "lat": 53.49466,
   "lng": 12.49731
@@ -1654,7 +1654,7 @@
   "type": "school",
   "label": "Wandlitz, Germany",
   "q": "Prenzlauer Ch 150, 16348 Wandlitz, Germany",
-  "web": "http://www.surfshop-berlin.de/",
+  "web": "https://www.surfshop-berlin.de/",
   "disc": "wing:4,parawing:4",
   "lat": 52.7547,
   "lng": 13.47158
@@ -1664,7 +1664,7 @@
   "type": "school",
   "label": "Lubmin, Germany",
   "q": "Marina, Freesendorfer Weg 5, 17509 Lubmin, Germany",
-  "web": "http://www.ostsee-kiteschule.com/",
+  "web": "https://www.ostsee-kiteschule.com/",
   "disc": "wing:4",
   "lat": 54.15037,
   "lng": 13.64763
@@ -1674,7 +1674,7 @@
   "type": "school",
   "label": "Cagliari, Italy",
   "q": "Via Gorgona, 6, 09126 Cagliari CA, Italy",
-  "web": "http://www.hyperisland.it/",
+  "web": "https://www.hyperisland.it/",
   "disc": "wing:4",
   "lat": 39.19662,
   "lng": 9.15823
@@ -1704,7 +1704,7 @@
   "type": "shop",
   "label": "Köln, Germany",
   "q": "Oskar-Jäger-Straße 145a, 50825 Ehrenfeld, Germany",
-  "web": "http://www.lekkersurf.shop/",
+  "web": "https://www.lekkersurf.shop/",
   "disc": "wing:4,kite:4,windfoil:4,pump:4,prone:4,parawing:4,foil-assist:4",
   "lat": 50.9444,
   "lng": 6.90614
@@ -1714,7 +1714,7 @@
   "type": "school",
   "label": "Schwedeneck, Germany",
   "q": "Kronshörn 1, 24229 Schwedeneck, Germany",
-  "web": "http://www.wassersport-schwedeneck.de/",
+  "web": "https://www.wassersport-schwedeneck.de/",
   "disc": "wing:4,efoil:4",
   "lat": 54.47441,
   "lng": 10.02882
@@ -1724,7 +1724,7 @@
   "type": "school",
   "label": "Berlin, Germany",
   "q": "Müggelseedamm 216, 12587 Berlin, Germany",
-  "web": "http://cityfoilers.de/kontakt/",
+  "web": "https://cityfoilers.de/kontakt/",
   "disc": "wing:4,pump:4,sup:4",
   "lat": 52.44531,
   "lng": 13.63075
@@ -1734,7 +1734,7 @@
   "type": "school",
   "label": "Dahme, Germany",
   "q": "An d. Strandpromenade 43, 23747 Dahme, Germany",
-  "web": "http://laylinesurf.de/",
+  "web": "https://laylinesurf.de/",
   "disc": "wing:4",
   "lat": 54.2311,
   "lng": 11.08579
@@ -1754,7 +1754,7 @@
   "type": "shop",
   "label": "Markkleeberg, Germany",
   "q": "Hafenstraße 23a, 04416 Markkleeberg, Germany",
-  "web": "http://www.surfcenter-leipzig.de/",
+  "web": "https://www.surfcenter-leipzig.de/",
   "disc": "wing:4,pump:4",
   "lat": 51.26464,
   "lng": 12.34512
@@ -1764,7 +1764,7 @@
   "type": "shop",
   "label": "Cape Town, South Africa",
   "q": "Seabreeze Centre, 6 Marine Cir, Table View, Cape Town, 7441, South Africa",
-  "web": "http://www.suntrax.co.za/",
+  "web": "https://www.suntrax.co.za/",
   "disc": "wing:4",
   "lat": -33.82067,
   "lng": 18.47876
@@ -1774,7 +1774,7 @@
   "type": "school",
   "label": "Born a. Darß, Germany",
   "q": "Strandübergang 49, Bernsteinweg 28, 18375 Born a. Darß, Germany",
-  "web": "http://www.kiteschule-darss.de/",
+  "web": "https://www.kiteschule-darss.de/",
   "disc": "wing:4",
   "lat": 54.45406,
   "lng": 12.555
@@ -1804,7 +1804,7 @@
   "type": "shop",
   "label": "Düsseldorf, Germany",
   "q": "Lotharstraße 41, 40547 Düsseldorf, Germany",
-  "web": "http://www.lonasport.com/",
+  "web": "https://www.lonasport.com/",
   "disc": "wing:4,kite:4,prone:4,parawing:4,sup:4",
   "lat": 51.24346,
   "lng": 6.74588
@@ -1844,7 +1844,7 @@
   "type": "school",
   "label": "Kahului, Maui",
   "q": "Kahului, Maui",
-  "web": "http://mauiwingfoilinglessons.com/",
+  "web": "https://mauiwingfoilinglessons.com/",
   "disc": "wing:4",
   "lat": 20.8893,
   "lng": -156.4729
@@ -1874,7 +1874,7 @@
   "type": "shop",
   "label": "Cape Town, South Africa",
   "q": "Shop 4G, Horizon Bay, 4 Blaauwberg Rd, Table View, Cape Town, 7441, South Africa",
-  "web": "http://www.thebrandstable.co.za/",
+  "web": "https://www.thebrandstable.co.za/",
   "disc": "wing:4,foil-assist:4",
   "lat": -33.82212,
   "lng": 18.47743
@@ -1894,7 +1894,7 @@
   "type": "shop",
   "label": "Lübeck, Germany",
   "q": "Fleischhauerstraße 46, 23552 Lübeck-Lübecker Altstadt, Germany",
-  "web": "http://www.boardrider-shop.de/",
+  "web": "https://www.boardrider-shop.de/",
   "disc": "wing:4,prone:4,parawing:4",
   "lat": 53.86643,
   "lng": 10.68931
@@ -1930,16 +1930,6 @@
   "lng": 18.49347
  },
  {
-  "name": "Surfers Spirit",
-  "type": "shop",
-  "label": "Hohenbrunn, Germany",
-  "q": "Otto-Hahn-Straße 19, 85521 Hohenbrunn-Riemerling, Germany",
-  "web": "http://www.surfersspirit.de/",
-  "disc": "wing:4,pump:4",
-  "lat": 48.05563,
-  "lng": 11.67742
- },
- {
   "name": "hydrofoil.blue",
   "type": "school",
   "label": "Schwerin, Germany",
@@ -1954,7 +1944,7 @@
   "type": "shop",
   "label": "Haiku, Maui",
   "q": "1075 Nanihoku Pl, Haiku, HI 96708",
-  "web": "http://www.wingfoilrental.com/",
+  "web": "https://www.wingfoilrental.com/",
   "disc": "wing:4",
   "lat": 20.89602,
   "lng": -156.30682
@@ -2004,7 +1994,7 @@
   "type": "school",
   "label": "Playa Blanca, Lanzarote",
   "q": "C. Don Jaime Quesada El Maestro, 12, 35580 Playa Blanca, Las Palmas, Spain",
-  "web": "http://www.wingfoilplayablanca.com/",
+  "web": "https://www.wingfoilplayablanca.com/",
   "disc": "wing:4",
   "lat": 28.86389,
   "lng": -13.83
@@ -2014,7 +2004,7 @@
   "type": "school",
   "label": "Duisburg, Germany",
   "q": "Lierheggenstraße 19, 47139 Duisburg, Germany",
-  "web": "http://efoil-schule.de/",
+  "web": "https://efoil-schule.de/",
   "disc": "wing:4,efoil:4,kite:4",
   "lat": 51.48221,
   "lng": 6.74455
@@ -2024,7 +2014,7 @@
   "type": "school",
   "label": "Famara, Lanzarote",
   "q": "C. Mar de Leva, 7, 35558 Caleta de Famara, Las Palmas, Spain",
-  "web": "http://www.volcanokite.com/",
+  "web": "https://www.volcanokite.com/",
   "disc": "wing:4,kite:4,prone:4,parawing:4",
   "lat": 29.1186,
   "lng": -13.56715
@@ -2054,7 +2044,7 @@
   "type": "school",
   "label": "Sierksdorf, Germany",
   "q": "Strande, Am Strande / gegenüber Hotel Hof Sierksdorf 32 Am, 23730 Sierksdorf, Germany",
-  "web": "http://www.surfschule-sierksdorf.de/",
+  "web": "https://www.surfschule-sierksdorf.de/",
   "disc": "wing:4",
   "lat": 54.05833,
   "lng": 10.75825
@@ -2074,27 +2064,17 @@
   "type": "school",
   "label": "Kenz-Küstrow, Germany",
   "q": "Hofstraße 12, 18314 Kenz-Küstrow, Germany",
-  "web": "http://www.water-central.com/",
+  "web": "https://www.water-central.com/",
   "disc": "wing:4,kite:4",
   "lat": 54.34187,
   "lng": 12.77672
- },
- {
-  "name": "Surfschule Müller Ammersee",
-  "type": "school",
-  "label": "Eching am Ammersee, Germany",
-  "q": "Schulstandort: Kaagangerstr Eching am Ammersee, Freizeitgelände 1 an der Kaagangerstr, 82279 Eching am Ammersee, Germany",
-  "web": "http://www.surfschule-ammersee.de/",
-  "disc": "wing:4,pump:4",
-  "lat": 48.06985,
-  "lng": 11.1111
  },
  {
   "name": "iSUPer SUP Wing Foil Verleih",
   "type": "school",
   "label": "Hamburg, Germany",
   "q": "Curslacker Deich 383a, 21039 Bergedorf, Germany",
-  "web": "http://www.isuper.de/",
+  "web": "https://www.isuper.de/",
   "disc": "wing:4",
   "lat": 53.46585,
   "lng": 10.20141
@@ -2104,7 +2084,7 @@
   "type": "school",
   "label": "Meldorf, Germany",
   "q": "Deichstraße, 25704 Meldorf, Germany",
-  "web": "http://www.xn--wingfoil-westkste-g3b.de/",
+  "web": "https://www.xn--wingfoil-westkste-g3b.de/",
   "disc": "wing:4",
   "lat": 54.09515,
   "lng": 8.95186
@@ -2124,7 +2104,7 @@
   "type": "school",
   "label": "Lindow, Germany",
   "q": "Am Gudelacksee, 16835 Lindow (Mark), Germany",
-  "web": "http://wingclub.world/",
+  "web": "https://wingclub.world/",
   "disc": "wing:4,efoil:4,parawing:4,foil-assist:4",
   "lat": 52.97749,
   "lng": 12.97098
@@ -2144,7 +2124,7 @@
   "type": "school",
   "label": "Essen, Germany",
   "q": "Im POTTPADDLER SUP Center im Seaside Beach Club, Freiherr-vom-Stein-Straße 384, 45133 Essen, Germany",
-  "web": "http://www.foilpfosten.de/",
+  "web": "https://www.foilpfosten.de/",
   "disc": "wing:4,pump:4,foil-assist:4",
   "lat": 51.40699,
   "lng": 7.01834
@@ -2174,7 +2154,7 @@
   "type": "school",
   "label": "Fehmarn, Germany",
   "q": "An der Surfschule Charchulla, Strukkamp 83, 23769 Fehmarn, Germany",
-  "web": "http://www.wingding-fehmarn.de/",
+  "web": "https://www.wingding-fehmarn.de/",
   "disc": "wing:4",
   "lat": 54.41136,
   "lng": 11.09707
@@ -2184,7 +2164,7 @@
   "type": "school",
   "label": "Gilching, Germany",
   "q": "Görbelmoosweg 14, 82205 Gilching, Germany",
-  "web": "http://wingfoilinstructor.de/",
+  "web": "https://wingfoilinstructor.de/",
   "disc": "wing:4",
   "lat": 48.11227,
   "lng": 11.29134
@@ -2214,7 +2194,7 @@
   "type": "school",
   "label": "Plauen, Germany",
   "q": "An d. Schöpsdrehe, 08525 Plauen, Germany",
-  "web": "http://www.flexibelkite.com/",
+  "web": "https://www.flexibelkite.com/",
   "disc": "wing:4,kite:4,pump:4",
   "lat": 50.53545,
   "lng": 12.10054
@@ -2264,7 +2244,7 @@
   "type": "school",
   "label": "Bernried am Starnberger See, Germany",
   "q": "Seepromenade 5, 82347 Bernried am Starnberger See, Germany",
-  "web": "http://www.bergeins.com/",
+  "web": "https://www.bergeins.com/",
   "disc": "wing:4,sup:4",
   "lat": 47.86988,
   "lng": 11.29293
@@ -2284,7 +2264,7 @@
   "type": "shop",
   "label": "Großbeeren, Germany",
   "q": "Breite Str. 8, 14979 Großbeeren, Germany",
-  "web": "http://www.kiteshop-berlin.de/",
+  "web": "https://www.kiteshop-berlin.de/",
   "disc": "wing:4",
   "lat": 52.35752,
   "lng": 13.30695
@@ -2294,7 +2274,7 @@
   "type": "school",
   "label": "München, Germany",
   "q": "Infanteriestraße 18 b, 80797 München, Germany",
-  "web": "http://www.wingfoilcoach.de/",
+  "web": "https://www.wingfoilcoach.de/",
   "disc": "wing:4,pump:4",
   "lat": 48.16083,
   "lng": 11.55485
@@ -2304,7 +2284,7 @@
   "type": "school",
   "label": "Bielefeld, Germany",
   "q": "Stadtring 13, 33647 Bielefeld-Brackwede, Germany",
-  "web": "http://www.luxurymarinetoys.com/",
+  "web": "https://www.luxurymarinetoys.com/",
   "disc": "efoil:4",
   "lat": 51.98116,
   "lng": 8.51968
@@ -2364,7 +2344,7 @@
   "type": "school",
   "label": "Rangsdorf, Germany",
   "q": "Am Strand 2, 15834 Rangsdorf, Germany",
-  "web": "http://www.proboarding-berlin.de/",
+  "web": "https://www.proboarding-berlin.de/",
   "disc": "wing:4,efoil:4,kite:4,sup:4",
   "lat": 52.29256,
   "lng": 13.41355
@@ -2384,7 +2364,7 @@
   "type": "school",
   "label": "El Médano, Tenerife",
   "q": "Paseo Ntra. Sra. de las Mercedes de Roja, 26, 38612 El Médano, Santa Cruz de Tenerife, Spain",
-  "web": "http://www.tenerifewingfoil.com/",
+  "web": "https://www.tenerifewingfoil.com/",
   "disc": "wing:4",
   "lat": 28.04284,
   "lng": -16.5412
@@ -2404,7 +2384,7 @@
   "type": "shop",
   "label": "Port Isaac, UK",
   "q": "The Rubber Shack (c/o North Coast Wetsuits) , Building 6 (near Explorer Marine, Port Isaac PL29 3TP, United Kingdom",
-  "web": "http://foilshop.co.uk/",
+  "web": "https://foilshop.co.uk/",
   "disc": "wing:4,efoil:4,windfoil:4,pump:4,prone:4,parawing:4,foil-assist:4,sup:4",
   "lat": 50.57484,
   "lng": -4.82963
@@ -2414,7 +2394,7 @@
   "type": "school",
   "label": "Neusiedl am See, Austria",
   "q": "im Strandbad, Seegelände 2, 7100 Neusiedl am See, Austria",
-  "web": "http://www.saltylake.at/",
+  "web": "https://www.saltylake.at/",
   "disc": "wing:4",
   "lat": 47.92851,
   "lng": 16.83534
@@ -2470,16 +2450,6 @@
   "lng": 8.60704
  },
  {
-  "name": "Kiteschule Rerik",
-  "type": "school",
-  "label": "Rerik, Germany",
-  "q": "Am Haff 2, 18230 Rerik, Germany",
-  "web": "http://www.kiteschule-rerik.de/",
-  "disc": "wing:4",
-  "lat": 54.10201,
-  "lng": 11.61564
- },
- {
   "name": "Wingcity International",
   "type": "school",
   "label": "Laupheim, Germany",
@@ -2504,7 +2474,7 @@
   "type": "school",
   "label": "Garz/Rügen, Germany",
   "q": "Rosengarten, 18574 Garz/Rügen, Germany",
-  "web": "http://www.kiteschule-ruegen.de/",
+  "web": "https://www.kiteschule-ruegen.de/",
   "disc": "wing:4",
   "lat": 54.30264,
   "lng": 13.41938
@@ -2554,7 +2524,7 @@
   "type": "school",
   "label": "Brouwersdam, Netherlands",
   "q": "Brouwersdam 22, 3253 MM Ouddorp, Netherlands",
-  "web": "http://www.natural-high.nl/wingschool",
+  "web": "https://www.natural-high.nl/wingschool",
   "disc": "wing:4,efoil:4,kite:4",
   "lat": 51.76059,
   "lng": 3.84661
@@ -2564,7 +2534,7 @@
   "type": "school",
   "label": "Lüdenscheid, Germany",
   "q": "Oenekinger Weg 91, 58509 Lüdenscheid, Germany",
-  "web": "http://windsurfing-campagnola.com/",
+  "web": "https://windsurfing-campagnola.com/",
   "disc": "wing:4",
   "lat": 51.21301,
   "lng": 7.60445
