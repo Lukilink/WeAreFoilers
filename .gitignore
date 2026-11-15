@@ -1,0 +1,6 @@
+.DS_Store
+.env
+*.local
+# internal notes, not for the public repo
+onboarding-wearefoilers.md
+supabase/.temp/

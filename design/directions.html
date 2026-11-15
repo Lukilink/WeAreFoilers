@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>We Are Foilers – Design directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #F4F2EE; color: #1b1b1b; font: 15px/1.5 "DM Sans", system-ui, sans-serif; padding: 40px 16px 80px; }
+  .page-head { max-width: 1180px; margin: 0 auto 36px; }
+  .page-head h1 { font-size: 28px; letter-spacing: -0.02em; }
+  .page-head p { color: #666; max-width: 640px; margin-top: 6px; }
+  .grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px 28px; align-items: start; }
+  .dir-head { margin-bottom: 14px; }
+  .dir-head .letter { display: inline-block; font-weight: 800; font-size: 13px; background: #1b1b1b; color: #fff; border-radius: 99px; padding: 2px 10px; margin-bottom: 6px; }
+  .dir-head h2 { font-size: 22px; letter-spacing: -0.01em; }
+  .dir-head p { color: #555; font-size: 14px; margin-top: 4px; }
+  .meta { margin-top: 18px; font-size: 13px; color: #555; }
+  .swatches { display: flex; gap: 6px; margin: 8px 0 12px; }
+  .swatches span { width: 34px; height: 34px; border-radius: 10px; border: 1px solid rgba(0,0,0,.08); }
+  .meta ul { padding-left: 16px; margin-top: 6px; }
+  .meta li { margin: 2px 0; }
+
+  /* ---------- Phone (shared structure) ---------- */
+  .phone { width: 100%; max-width: 360px; margin: 0 auto; border-radius: 38px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: var(--body); box-shadow: 0 30px 60px -30px rgba(0,0,0,.35), 0 0 0 8px #111; position: relative; }
+  .bar { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px 12px; }
+  .logo { display: flex; align-items: center; gap: 7px; font-family: var(--head); font-size: 17px; font-weight: 800; letter-spacing: -0.02em; }
+  .logo svg { width: 24px; height: 24px; color: var(--accent); }
+  .btn { font: inherit; font-weight: 700; font-size: 13px; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--r-btn); background: var(--ink); color: var(--bg); text-decoration: none; }
+  .btn svg { width: 15px; height: 15px; }
+  .btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+  .map { position: relative; height: 250px; margin: 0 12px; border-radius: var(--r-card); overflow: hidden; background: var(--sea); }
+  .map svg { width: 100%; height: 100%; display: block; }
+  .search { position: absolute; left: 10px; right: 10px; top: 10px; display: flex; align-items: center; gap: 8px; background: var(--bg); border-radius: 99px; padding: 9px 14px; font-size: 13px; color: var(--muted); box-shadow: var(--shadow); }
+  .search svg { width: 16px; height: 16px; }
+  .chips { display: flex; gap: 6px; overflow: hidden; padding: 12px 12px 4px; }
+  .chip { flex: none; font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 99px; box-shadow: inset 0 0 0 1.5px var(--line); white-space: nowrap; }
+  .chip.on { background: var(--ink); color: var(--bg); box-shadow: none; }
+
+  .card { margin: 10px 12px 0; padding: 16px; border-radius: var(--r-card); background: var(--card); box-shadow: var(--shadow); position: relative; }
+  .card-top { display: flex; gap: 12px; align-items: center; }
+  .avatar { width: 56px; height: 56px; flex: none; border-radius: 50%; display: grid; place-items: center; font-family: var(--head); font-weight: 800; font-size: 22px; position: relative; }
+  .avatar .doodle { position: absolute; right: -6px; bottom: -4px; width: 24px; height: 24px; }
+  .who h3 { font-family: var(--head); font-size: 20px; line-height: 1.1; letter-spacing: -0.02em; }
+  .loc { font-size: 12.5px; color: var(--muted); display: flex; align-items: center; gap: 4px; margin-top: 3px; flex-wrap: wrap; }
+  .loc svg { width: 13px; height: 13px; }
+  .travel { color: var(--accent-ink); font-weight: 700; display: inline-flex; align-items: center; gap: 3px; }
+  .type { margin-left: auto; align-self: flex-start; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 3px 8px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-ink); }
+  .stats { margin: 14px 0 12px; display: grid; gap: 7px; }
+  .stat { display: flex; align-items: center; font-size: 13.5px; font-weight: 600; }
+  .stat .lvl { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+  .stat .lvl small { font-size: 11px; color: var(--muted); font-weight: 500; margin-right: 6px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line); }
+  .dot.f { background: var(--accent); box-shadow: none; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 12px; font-weight: 600; display: inline-flex; gap: 5px; align-items: center; padding: 5px 10px; border-radius: 99px; background: var(--tag); }
+  .tag svg { width: 13px; height: 13px; color: var(--accent); }
+  .about { margin: 12px 0 14px; font-size: 13.5px; color: var(--ink); opacity: .85; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .quip { text-align: center; padding: 16px 20px 22px; font-size: 14px; color: var(--muted); }
+  .quip svg { width: 16px; height: 16px; vertical-align: -3px; color: var(--accent); }
+
+  /* map pieces */
+  .land { fill: var(--land); stroke: var(--coast); stroke-width: var(--coast-w); }
+  .wave { fill: none; stroke: var(--wave); stroke-width: 1.5; stroke-linecap: round; }
+  .halo { fill: var(--accent); fill-opacity: .14; stroke: var(--accent); stroke-opacity: .5; stroke-dasharray: 3 4; }
+  .pin circle { stroke: var(--pin-stroke); stroke-width: var(--pin-sw); }
+  .pin text { font: 800 11px var(--head); fill: #fff; text-anchor: middle; dominant-baseline: central; }
+  .pin.p circle { fill: var(--c-private); }
+  .pin.s circle { fill: var(--c-school); }
+  .pin.h circle { fill: var(--c-shop); }
+  .pin.cl circle { fill: var(--bg); }
+  .pin.cl text { fill: var(--ink); }
+
+  /* ---------- A: Sketchbook ---------- */
+  .A { --bg:#FBF8F2; --card:#FFFFFF; --ink:#1E1D1A; --muted:#7B776E; --line:#D9D3C7; --accent:#FF5B3A; --accent-ink:#D9431F; --accent-soft:#FFE7DF;
+       --tag:#F3EEE5; --sea:#EAF2F1; --land:#F5EEDF; --coast:#1E1D1A; --coast-w:1.4; --wave:#BFD8D6;
+       --c-private:#FF5B3A; --c-school:#2D6A8F; --c-shop:#1E1D1A; --pin-stroke:#FBF8F2; --pin-sw:2;
+       --head:"DM Sans"; --body:"DM Sans"; --r-card:22px; --r-btn:99px; --shadow:0 1px 0 rgba(0,0,0,.04), 0 8px 24px -12px rgba(60,40,20,.18); }
+  .A .rough { filter: url(#rough); }
+  .A .avatar { background: #FFE7DF; color: var(--accent-ink); }
+  .A .avatar::after { content:""; position:absolute; inset:-4px; border:1.5px solid var(--ink); border-radius:50%; filter:url(#rough); }
+  .A .hand { font-family: "Caveat", cursive; font-size: 22px; color: var(--ink); line-height: 1.1; }
+  .A .note { position: absolute; right: 14px; top: -14px; font-family: "Caveat"; font-size: 18px; color: var(--accent-ink); transform: rotate(4deg); display: flex; align-items: center; gap: 4px; }
+  .A .note svg { width: 22px; height: 22px; }
+
+  /* ---------- B: Morning Glass ---------- */
+  .B { --bg:#FFFFFF; --card:#FFFFFF; --ink:#0F2A3A; --muted:#7A8B96; --line:#DCE5EA; --accent:#18B2A2; --accent-ink:#0E8A7D; --accent-soft:#E2F6F3;
+       --tag:#F1F6F8; --sea:#EEF7FA; --land:#FFFFFF; --coast:#D5E6EC; --coast-w:1; --wave:#D6EBF1;
+       --c-private:#18B2A2; --c-school:#FFB648; --c-shop:#0F2A3A; --pin-stroke:#FFFFFF; --pin-sw:3;
+       --head:"Manrope"; --body:"Manrope"; --r-card:26px; --r-btn:14px; --shadow:0 12px 32px -14px rgba(15,42,58,.22); }
+  .B .avatar { color: #fff; background: radial-gradient(circle at 30% 25%, #FFD27A, transparent 55%), radial-gradient(circle at 75% 80%, #5FD3C6, transparent 60%), #18B2A2; }
+  .B .avatar .doodle { color: #FFB648; }
+  .B .card { border: 1px solid #EEF3F6; }
+  .B .hand { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .B .note { display: none; }
+
+  /* ---------- C: Sticker Club ---------- */
+  .C { --bg:#FFFCF5; --card:#FFFFFF; --ink:#141414; --muted:#6B6B6B; --line:#141414; --accent:#FF7BAC; --accent-ink:#141414; --accent-soft:#FFE45E;
+       --tag:#DDF1FF; --sea:#CFEAFF; --land:#FFF3C4; --coast:#141414; --coast-w:2; --wave:#9FD3FA;
+       --c-private:#FF7BAC; --c-school:#5DB7F5; --c-shop:#7ED957; --pin-stroke:#141414; --pin-sw:2;
+       --head:"Archivo Black"; --body:"Space Grotesk"; --r-card:18px; --r-btn:12px; --shadow:4px 4px 0 #141414; }
+  .C .card { border: 2px solid #141414; }
+  .C .map { border: 2px solid #141414; }
+  .C .search { border: 2px solid #141414; box-shadow: 3px 3px 0 #141414; }
+  .C .btn { box-shadow: 3px 3px 0 var(--accent); }
+  .C .btn.ghost { box-shadow: inset 0 0 0 2px #141414; }
+  .C .chip { box-shadow: inset 0 0 0 2px #141414; }
+  .C .chip:nth-child(2n) { transform: rotate(-2deg); }
+  .C .chip.on { background: var(--accent); color: #141414; box-shadow: inset 0 0 0 2px #141414; }
+  .C .tag { border: 2px solid #141414; }
+  .C .tag:nth-child(2) { background: #FFE45E; transform: rotate(1.5deg); }
+  .C .tag:nth-child(3) { background: #FFD3E4; transform: rotate(-1.5deg); }
+  .C .tag svg { color: #141414; }
+  .C .avatar { background: #FFE45E; border: 2px solid #141414; transform: rotate(-6deg); border-radius: 16px; box-shadow: 3px 3px 0 #141414; font-weight: 400; }
+  .C .who h3, .C .logo { font-weight: 400; }
+  .C .type { border: 2px solid #141414; }
+  .C .dot { box-shadow: inset 0 0 0 2px #141414; border-radius: 3px; transform: rotate(45deg); }
+  .C .dot.f { background: var(--accent); box-shadow: inset 0 0 0 2px #141414; }
+  .C .pin text { fill: #141414; }
+  .C .halo { fill-opacity: .25; stroke: #141414; stroke-opacity: 1; }
+  .C .hand { font-family: "Space Grotesk"; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+  .C .note { position: absolute; right: -6px; top: -16px; background: #7ED957; border: 2px solid #141414; font: 700 12px "Space Grotesk"; padding: 3px 8px; border-radius: 8px; transform: rotate(6deg); }
+  .C .note svg { display: none; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter>
+</svg>
+
+<header class="page-head">
+  <h1>We Are Foilers · 3 design directions</h1>
+  <p>All three are light, minimal and mobile first. They share the same screen: map, filters and a profile card <b>without a photo</b>. Pick one, or mix them, e.g. “A, but with the colors from C”.</p>
+</header>
+
+<main class="grid" id="grid"></main>
+
+<script>
+const I = {
+  heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9-8.6C1.4 8 3.6 4.5 7 4.5c2.2 0 3.6 1.3 5 3.2 1.4-1.9 2.8-3.2 5-3.2 3.4 0 5.6 3.5 4 6.9C19 15.6 12 20 12 20z"/></svg>',
+  board: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 3.5c3 3-1 11-6 15.5-2.6 2.3-5.4 2.6-6.6 1.4S4.3 16.4 6.6 13.8C11 8.8 14.5.5 17.5 3.5z"/><path d="M16 6 7 17.5"/></svg>',
+  foil: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5c3-1.2 15-1.2 18 0"/><path d="M12 7.3v9"/><path d="M5.5 16.5c4 2.2 9 2.2 13 0"/><path d="M15 16.6l2 1.8"/></svg>',
+  wave: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 14c2.5-3 4.5-3 7 0s4.5 3 7 0 4-3 6-1"/><path d="M2 19c2.5-3 4.5-3 7 0s4.5 3 7 0 4-3 6-1" opacity=".5"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>',
+  plane: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 13.5 21 6l-4.5 13-4.2-5.2z"/><path d="M12.3 13.8 21 6"/></svg>',
+  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>',
+  lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="3"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>',
+  ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>',
+  people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8.5" r="3"/><circle cx="16.5" cy="9.5" r="2.4"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M15 14.3c2.5-.3 4.8 1.2 5.5 4.2"/></svg>',
+  map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg>',
+};
+
+const dirs = [
+  { id:'A', name:'Sketchbook', sub:'Warm paper, ink lines, hand-drawn doodles and handwritten side notes. Like a surf trip diary.',
+    logo:I.board, avatarDoodle:I.heart, quip:'No kooks were harmed in the making of this map.', note:'new in town!',
+    swatches:['#FBF8F2','#1E1D1A','#FF5B3A','#2D6A8F','#F5EEDF'],
+    font:'DM Sans + Caveat (handwritten notes)',
+    bullets:['Doodles look slightly hand-drawn (wobbly lines)','Coral as the one loud color','Most "lovingly crafted" feel of the three'] },
+  { id:'B', name:'Morning Glass', sub:'Lots of white, soft shadows, ocean teal and a little sunshine. Calm, premium, like glassy conditions at sunrise.',
+    logo:I.foil, avatarDoodle:I.wave, quip:'Locals only? Nah. Locals welcome.', note:'',
+    swatches:['#FFFFFF','#0F2A3A','#18B2A2','#FFB648','#EEF7FA'],
+    font:'Manrope',
+    bullets:['Avatar without a photo = soft color gradient + initial','Cleanest and most "app-like"','Fewest jokes in the visuals, the humor is in the copy'] },
+  { id:'C', name:'Sticker Club', sub:'Skate-shop energy: bold outlines, pastel stickers, slightly crooked tags. Playful, but still clean.',
+    logo:I.board, avatarDoodle:'', quip:'Borrow a wing. Return it with a smile (and maybe a beer).', note:'travelling ✈',
+    swatches:['#FFFCF5','#141414','#FF7BAC','#5DB7F5','#FFE45E'],
+    font:'Archivo Black + Space Grotesk',
+    bullets:['Hard offset shadows like stickers on a board','Pins in candy colors with black outlines','Loudest and most "skate" of the three'] },
+];
+
+const lvl = n => [1,2,3,4].map(i => `<span class="dot ${i<=n?'f':''}"></span>`).join('');
+const levels = ['','Beginner','Intermediate','Advanced','Pro'];
+const disc = [['Wing',3],['Prone',2],['Downwind',1]];
+
+function mapSvg() {
+  return `<svg viewBox="0 0 336 250" preserveAspectRatio="xMidYMid slice">
+    <g class="rough">
+      <path class="wave" d="M20 220c6-6 12-6 18 0s12 6 18 0"/>
+      <path class="wave" d="M230 110c6-6 12-6 18 0s12 6 18 0"/>
+      <path class="wave" d="M150 232c6-6 12-6 18 0s12 6 18 0"/>
+      <path class="land" d="M30 95C70 55 140 62 180 92s15 75-20 100-95 15-120-15S10 118 30 95Z"/>
+      <path class="land" d="M240 170c18-20 58-16 70 8s-14 46-40 38-42-28-30-46Z"/>
+      <path class="land" d="M270 62c14-12 44-8 52 12s-12 32-32 26-30-26-20-38Z"/>
+    </g>
+    <circle class="halo" cx="128" cy="150" r="30"/>
+    <g class="pin s"><circle cx="85" cy="105" r="13"/><text x="85" y="105">S</text></g>
+    <g class="pin h"><circle cx="60" cy="160" r="13"/><text x="60" y="160">B</text></g>
+    <g class="pin p"><circle cx="128" cy="150" r="15"/><text x="128" y="150">M</text></g>
+    <g class="pin p"><circle cx="275" cy="190" r="13"/><text x="275" y="190">J</text></g>
+    <g class="pin cl"><circle cx="295" cy="80" r="15"/><text x="295" y="80">12</text></g>
+  </svg>`;
+}
+
+function phone(d) {
+  return `
+  <div class="phone ${d.id}">
+    <div class="bar">
+      <div class="logo"><span class="rough">${d.logo}</span>We Are Foilers</div>
+      <button class="btn">Join ${d.id==='A' ? I.heart : ''}</button>
+    </div>
+    <div class="map">${mapSvg()}<div class="search">${I.search} Where are you heading?</div></div>
+    <div class="chips"><span class="chip on">All</span><span class="chip">Wing</span><span class="chip">Pump</span><span class="chip">Prone</span><span class="chip">Kite</span><span class="chip">eFoil</span></div>
+    <article class="card">
+      ${d.note ? `<span class="note">${d.note}<span class="rough">${I.plane}</span></span>` : ''}
+      <div class="card-top">
+        <div class="avatar">M${d.avatarDoodle ? `<span class="doodle rough" style="color:var(--accent)">${d.avatarDoodle}</span>` : ''}</div>
+        <div class="who">
+          <h3>Mara</h3>
+          <p class="loc">${I.pin} El Médano <span class="travel">${I.plane} now Fuerteventura</span></p>
+        </div>
+        <span class="type">Local</span>
+      </div>
+      <div class="stats">
+        ${disc.map(([n,l]) => `<div class="stat">${n}<span class="lvl"><small>${levels[l]}</small>${lvl(l)}</span></div>`).join('')}
+      </div>
+      <div class="tags">
+        <span class="tag">${I.people} Session buddy</span>
+        <span class="tag">${I.map} Shows spots</span>
+        <span class="tag">${I.heart} Lends gear</span>
+      </div>
+      <p class="about"><span class="hand">“Dawn patrol person. Will trade coffee for a downwind shuttle.”</span></p>
+      <div class="actions">
+        <a class="btn">${I.ig} Instagram</a>
+        <a class="btn ghost">${I.lock} WhatsApp · members</a>
+      </div>
+    </article>
+    <p class="quip"><span class="rough">${I.heart}</span> ${d.quip}</p>
+  </div>`;
+}
+
+document.getElementById('grid').innerHTML = dirs.map(d => `
+  <section>
+    <div class="dir-head"><span class="letter">${d.id}</span><h2>${d.name}</h2><p>${d.sub}</p></div>
+    ${phone(d)}
+    <div class="meta">
+      <div class="swatches">${d.swatches.map(c => `<span style="background:${c}"></span>`).join('')}</div>
+      <b>Font:</b> ${d.font}
+      <ul>${d.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+    </div>
+  </section>`).join('');
+</script>
+</body>
+</html>

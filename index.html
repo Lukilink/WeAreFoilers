@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>We Are Foilers · Find foilers near you, wherever you are</title>
+  <meta name="description" content="A free, non-profit world map of foilers. Wing, pump, prone, kite, downwind and more. Find locals when you travel, get shown the spots, share a session.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="We Are Foilers">
+  <meta property="og:description" content="Find foilers near you, wherever you are. Free and non-profit.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="assets/vendor/markercluster/MarkerCluster.css">
+  <link rel="stylesheet" href="assets/vendor/maplibre/maplibre-gl.css">
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a class="logo" href="./" aria-label="We Are Foilers, home"><span id="logoIcon"></span>We Are Foilers</a><button class="demo-badge hidden" id="demoBanner">Demo</button></div>
+  <div class="top-actions">
+    <button class="icon-btn" id="btnAbout" aria-label="About"></button>
+    <button class="btn" id="btnMe">Join</button>
+  </div>
+</header>
+
+<main class="layout">
+  <div id="map" role="application" aria-label="Map of foilers"></div>
+
+  <div class="finder" id="finder">
+    <form class="search" id="searchForm" role="search">
+      <span id="searchIcon"></span>
+      <input id="searchInput" type="search" placeholder="Where are you heading?" autocomplete="off" enterkeyhint="search" aria-label="Search a place">
+      <button type="button" class="icon-btn" id="btnLocate" aria-label="Near me"></button>
+    </form>
+    <div class="chips" id="chips" aria-label="Filter by discipline"></div>
+  </div>
+
+  <aside class="panel" id="panel" data-size="peek" aria-label="Foilers">
+    <button class="grip" id="grip" aria-label="Expand list"><span></span></button>
+    <div class="panel-body" id="panelBody"></div>
+  </aside>
+</main>
+
+<dialog id="dlg"></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/vendor/leaflet/leaflet.js"></script>
+<script src="assets/vendor/markercluster/leaflet.markercluster.js"></script>
+<script src="assets/vendor/maplibre/maplibre-gl.js"></script>
+<script src="assets/vendor/maplibre/leaflet-maplibre-gl.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/catalog.js"></script>
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/store-demo.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
