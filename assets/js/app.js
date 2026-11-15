@@ -310,6 +310,7 @@
     var h = '<button class="link-btn back" data-action="back">' + I.back + 'Back to the map</button>';
     if (p.status === 'pending') h += '<div class="notice">' + I.clock + '<span><b>Almost there.</b> Your card shows up on the map after a quick check. Usually within a day.</span></div>';
     if (p.status === 'hidden' || p.status === 'blocked') h += '<div class="notice red">' + I.shield + '<span>Your card is currently not shown on the map. Questions? Get in touch with us.</span></div>';
+    if (p.claimOf) { var cl = find(p.claimOf); h += '<div class="notice teal">' + I.robot + '<span><b>Claim sent.</b> Your card replaces the automatic entry' + (cl ? ' <b>' + esc(cl.name) + '</b>' : '') + ' once we\'ve had a quick look.</span></div>'; }
     if (!p.visible) h += '<div class="notice teal">' + I.eyeOff + '<span>Your card is hidden. Only you can see it.</span></div>';
 
     h += '<div class="panel-head"><div class="grow"><h2>Where are you?</h2><p class="sub">Your whole card moves with you.</p></div></div>';
@@ -363,9 +364,24 @@
     var p = find(id); if (!p) return;
     state.claim = p;
     if (!store.getUser()) { toast('Create an account first, then your card replaces the automatic one.'); return openAuth('join'); }
-    if (state.me) {
-      return confirmDlg('Claim ' + esc(p.name) + '?', 'We\'ll replace the automatic entry with your card once we\'ve had a quick look.', 'Claim it')
-        .then(function (ok) { if (!ok) { state.claim = null; return; } store.saveMyProfile({ claimOf: p.id }).then(function (m) { state.me = m; state.claim = null; toast('Got it! We\'ll check and merge it.'); }); });
+    var me = state.me;
+    if (me && me.claimOf === p.id) { state.claim = null; return toast('You already claimed this one. We\'re on it.'); }
+    if (me && me.type === 'private') {
+      // one account, one card: the foiler card turns into the school/shop card
+      return confirmDlg('Claim ' + esc(p.name) + '?',
+        'One account has one card. Your foiler card <b>' + esc(me.name) + '</b> becomes the card for <b>' + esc(p.name) + '</b>. ' +
+        'We fill in what we know, you check it before saving. Once we\'ve had a quick look, it replaces the automatic entry.', 'Continue')
+        .then(function (ok) { if (!ok) { state.claim = null; return; } openEditor({ claim: p }); });
+    }
+    if (me) {
+      return confirmDlg('Claim ' + esc(p.name) + '?', 'We\'ll replace the automatic entry with your card <b>' + esc(me.name) + '</b> once we\'ve had a quick look.', 'Claim it')
+        .then(function (ok) {
+          if (!ok) { state.claim = null; return; }
+          store.saveMyProfile({ claimOf: p.id }).then(function (m) {
+            state.me = m; state.claim = null;
+            toast(m.claimOf === p.id ? 'Got it! We\'ll check and replace the automatic entry.' : 'That didn\'t work. Please get in touch with us.');
+          }).catch(function (e) { toast(e.message || 'That didn\'t work. Please try again.'); });
+        });
     }
     openEditor();
   }
@@ -541,8 +557,8 @@
     });
   }
 
-  function openEditor() {
-    var isNew = !state.me, claim = isNew ? state.claim : null;
+  function openEditor(opts) {
+    var isNew = !state.me, claim = (opts && opts.claim) || (isNew ? state.claim : null);
     var dr = JSON.parse(JSON.stringify(state.me || {
       type: 'private', name: '', photo: '', home: null, away: null, atAway: false, disciplines: [], disciplineOther: '',
       openFor: [], gear: [], gearOther: '', kit: [], about: '', instagram: '', whatsapp: '', email: '', website: '', hours: ''
@@ -551,6 +567,7 @@
       ['type', 'name', 'disciplines', 'openFor', 'gear', 'kit', 'about', 'instagram', 'website', 'hours'].forEach(function (k) { dr[k] = JSON.parse(JSON.stringify(claim[k] || dr[k])); });
       dr.home = { label: claim.home.label, lat: claim.home.lat, lng: claim.home.lng, exact: true };
       dr.claimOf = claim.id;
+      if (dr.type === 'private') dr.type = 'school';
     }
     if (!dr.kit) dr.kit = [];
     if (!dr.id) dr.id = 'new-' + Date.now();
@@ -687,7 +704,8 @@
       var btn = q('#edSave'); btn.disabled = true;
       store.saveMyProfile(data).then(function (p) {
         state.me = p; state.claim = null; d.close();
-        toast(p.status === 'pending' ? 'Saved! Your card shows up after a quick check.' : (isNew ? 'You\'re on the map! Welcome to the crew.' : 'Saved.'));
+        if (data.claimOf) toast(p.claimOf === data.claimOf ? 'Thanks! We\'ll check and replace the automatic entry.' : 'Saved, but the claim didn\'t go through. Please get in touch with us.');
+        else toast(p.status === 'pending' ? 'Saved! Your card shows up after a quick check.' : (isNew ? 'You\'re on the map! Welcome to the crew.' : 'Saved.'));
         reload().then(function () {
           openMe();
           if (isNew) { var pl = U.place(p); flyToVisible([pl.lat, pl.lng], 10); }
