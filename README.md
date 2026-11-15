@@ -51,7 +51,7 @@ Im Supabase-Dashboard einzustellen (geht nicht per SQL):
 
 ## Online
 
-- Seite: https://lukilink.github.io/WeAreFoilers/ (GitHub Pages, Branch main, Root). Domain wearefoilers.com bei IONOS, Mail mail@wearefoilers.com, Instagram @wearefoilers.
+- Seite: https://wearefoilers.com (GitHub Pages, Branch main, Root, Datei `CNAME`). DNS bei IONOS: 4 A-Einträge @ → 185.199.108–111.153, CNAME www → lukilink.github.io. Mail mail@wearefoilers.com, Instagram @wearefoilers.
 
 ## Partnerprogramm
 
@@ -64,6 +64,6 @@ Echte Schulen/Shops aus öffentlichen Infos, auf der Karte als „Added automati
 ## Noch offen
 
 - Rechtstexte prüfen lassen
-- Domain wearefoilers.com auf GitHub Pages umstellen (DNS bei IONOS, dann CNAME), SMTP über IONOS, Turnstile, Backup-Action, Uptime-Ping, SEO (OG-Bild, sitemap, robots, llms.txt)
+- SMTP über IONOS, Turnstile, Backup-Action, Uptime-Ping, SEO (OG-Bild, sitemap, robots, llms.txt)
 - Mail an Admin bei neuer Karte / Partner-Anfrage (Edge Function)
 - Logo
