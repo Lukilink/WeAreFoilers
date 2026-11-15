@@ -4,3 +4,6 @@
 # internal notes, not for the public repo
 onboarding-wearefoilers.md
 supabase/.temp/
+
+# raw Apify exports (scraped data, not for the public repo)
+Apify/

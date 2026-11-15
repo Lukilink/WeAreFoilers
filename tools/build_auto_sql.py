@@ -32,7 +32,7 @@ rows = []
 for e in entries:
     disc = [{"id": d.split(":")[0], "level": int(d.split(":")[1])} for d in e["disc"].split(",")]
     kind = "school" if e["type"] == "school" else "shop"
-    about = f"Wing foil {'lessons' if kind == 'school' else 'gear and advice'} in {e['label'].split(',')[0]}. Details and booking on their website."
+    about = f"Foil {'lessons and rental' if kind == 'school' else 'gear and advice'} in {e['label'].split(',')[0]}. Details and booking on their website."
     rows.append("(md5({n})::uuid, {t}, {n}, {lbl}, {lat}, {lng}, {disc}::jsonb, {open}, {about}, {web}, true, {web}, 'approved')".format(
         n=q(e["name"]), t=q(e["type"]), lbl=q(e["label"]), lat=e["lat"], lng=e["lng"], disc=q(json.dumps(disc)),
         open="'{}'", about=q(about), web=q(e["web"])))
