@@ -49,6 +49,10 @@ Im Supabase-Dashboard einzustellen (geht nicht per SQL):
 - Authentication → Providers → Email: „Confirm email“ an
 - Eigener SMTP-Versand (sobald die Domain-Mailbox existiert), sonst gehen Mails nur an Team-Mitglieder des Supabase-Projekts
 
+## Online
+
+- Seite: https://lukilink.github.io/WeAreFoilers/ (GitHub Pages, Branch main, Root). Domain wearefoilers.com bei IONOS, Mail mail@wearefoilers.com, Instagram @wearefoilers.
+
 ## Partnerprogramm
 
 Mitglieder teilen den Link (Insta-Bio, Website) und schicken uns die Stelle über „Become a partner“. Auf der Admin-Seite (Tab „Partners“) Link prüfen und „Give check“: blauer Haken am Profilbild, Partner stehen in Listen oben.
@@ -59,7 +63,7 @@ Echte Schulen/Shops aus öffentlichen Infos, auf der Karte als „Added automati
 
 ## Noch offen
 
-- Kontakt-E-Mail im Impressum/Datenschutz (Platzhalter), Rechtstexte prüfen lassen
-- Domain, GitHub Pages, SMTP, Turnstile, Backup-Action, Uptime-Ping, SEO (OG-Bild, sitemap, robots, llms.txt)
+- Rechtstexte prüfen lassen
+- Domain wearefoilers.com auf GitHub Pages umstellen (DNS bei IONOS, dann CNAME), SMTP über IONOS, Turnstile, Backup-Action, Uptime-Ping, SEO (OG-Bild, sitemap, robots, llms.txt)
 - Mail an Admin bei neuer Karte / Partner-Anfrage (Edge Function)
 - Logo

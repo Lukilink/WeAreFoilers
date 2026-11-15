@@ -10,11 +10,12 @@
  */
 window.WAF_CONFIG = {
   siteName: 'We Are Foilers',
-  siteUrl: 'https://wearefoilers.com',     // final domain still open; used for the partner share link
+  siteUrl: 'https://wearefoilers.com',     // used for the partner share link
   supabaseUrl: 'https://lbehkomudrhnwmkfiysz.supabase.co',
   supabaseAnonKey: 'sb_publishable_zY22HgBtv480sLtSojTogg_AwIBLIlg',   // publishable key, safe in the repo
 
-  contactEmail: '',                        // shown in the footer, empty = hidden
+  contactEmail: 'mail@wearefoilers.com',   // shown in the footer and About, empty = hidden
+  instagram: 'wearefoilers',               // our own account, empty = hidden
 
   /* Feature switches. manualApproval, showDemo and partnerProgram are switched live on the admin page
      (stored in the database); the values here are only defaults for demo mode. */

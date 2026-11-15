@@ -159,7 +159,14 @@
 
   function footer() {
     return '<footer class="foot"><nav><button data-action="about">About & FAQ</button><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="imprint.html">Imprint</a></nav>' +
+      contactLinks() +
       '<p>Made with <span class="heart">' + I.heart + '</span> by foilers, for foilers.<br>Non-profit, brand-neutral, unofficial community project.</p></footer>';
+  }
+  function contactLinks() {
+    var l = [];
+    if (CFG.instagram) l.push('<a href="https://instagram.com/' + esc(CFG.instagram) + '" target="_blank" rel="noopener">' + I.ig + '@' + esc(CFG.instagram) + '</a>');
+    if (CFG.contactEmail) l.push('<a href="mailto:' + esc(CFG.contactEmail) + '">' + I.mail + esc(CFG.contactEmail) + '</a>');
+    return l.length ? '<nav class="foot-contact">' + l.join('') + '</nav>' : '';
   }
 
   function renderList() {
@@ -690,7 +697,7 @@
     ];
     openDialog(head('About We Are Foilers') +
       '<div class="dlg-body"><div class="auth-hero"><span class="doodle">' + I.foil + '</span><h3>Find your crew, anywhere.</h3><p>' + esc(quip) + '</p></div>' +
-      '<div class="faq">' + qa.map(function (x) { return '<h4>' + x[0] + '</h4><p>' + x[1] + '</p>'; }).join('') + '</div></div>' +
+      '<div class="faq">' + qa.map(function (x) { return '<h4>' + x[0] + '</h4><p>' + x[1] + '</p>'; }).join('') + '</div>' + contactLinks() + '</div>' +
       '<div class="dlg-foot"><button class="btn accent" data-close>Got it</button></div>');
   }
   $('btnAbout').addEventListener('click', openAbout);
