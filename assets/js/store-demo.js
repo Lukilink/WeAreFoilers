@@ -93,6 +93,17 @@
   function del(k) { try { localStorage.removeItem(k); } catch (e) { delete mem[k]; } }
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
 
+  /* Demo gear, derived from what someone rides. Schools and shops also get wetsuits. */
+  var KIT_BY_DISC = { wing: ['wings', 'foils', 'boards'], pump: ['foils', 'boards'], prone: ['foils', 'boards'], kite: ['kites', 'foils', 'boards'],
+    downwind: ['foils', 'boards'], parawing: ['parawings', 'foils', 'boards'], 'foil-assist': ['foil-drives', 'foils', 'boards'],
+    efoil: ['efoils'], sup: ['foils', 'boards'], windfoil: ['sails', 'foils', 'boards'], wake: ['foils', 'boards'], tow: ['foils', 'boards'] };
+  function kitFor(disc, type) {
+    var out = [];
+    disc.split(',').forEach(function (d) { (KIT_BY_DISC[d.split(':')[0]] || []).forEach(function (k) { if (out.indexOf(k) < 0) out.push(k); }); });
+    if (type !== 'private') out.push('wetsuits');
+    return out;
+  }
+
   function seedProfile(s) {
     var x = s[8] || {};
     var p = {
@@ -103,7 +114,7 @@
       disciplines: s[4].split(',').map(function (d) { var a = d.split(':'); return { id: a[0], level: +a[1] }; }),
       disciplineOther: '',
       openFor: s[5] ? s[5].split(',') : [],
-      gear: s[6] ? s[6].split(',') : [], gearOther: '',
+      gear: s[6] ? s[6].split(',') : [], gearOther: '', kit: kitFor(s[4], s[1]),
       about: s[7], photo: '',
       instagram: x.ig || '', website: x.web || '', hours: x.hours || '',
       whatsapp: x.wa || '', email: x.mail || '',

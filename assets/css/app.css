@@ -235,6 +235,42 @@ dialog::backdrop { background: rgba(15,42,58,.35); backdrop-filter: blur(2px); }
 .dlg-foot .btn { flex: 1; }
 dialog.small .dlg-body { flex: none; }
 
+/* ---------- Filters ---------- */
+.tdot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.tdot.t-private { background: var(--accent); }
+.tdot.t-school { background: var(--sun); }
+.tdot.t-shop { background: var(--ink-2); }
+.chip.on .tdot, .tbtn.on .tdot { box-shadow: 0 0 0 2px #fff; }
+.filter-icon { position: relative; }
+.filter-icon.on { background: var(--ink); color: #fff; }
+.filter-icon .count { position: absolute; top: -3px; right: -3px; background: var(--accent); color: #fff; border-radius: 99px; font-size: 10.5px; font-weight: 800;
+  min-width: 17px; height: 17px; display: grid; place-items: center; padding: 0 4px; box-shadow: 0 0 0 2px #fff; }
+.chip.active-f { background: var(--accent-soft); color: var(--accent-ink); padding-right: 9px; }
+.chip.active-f svg { width: 13px; height: 13px; opacity: .7; }
+.filters { padding-top: 14px; }
+.type-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px; }
+.tbtn { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 6px; border: 0; border-radius: var(--r); background: var(--bg-soft, #F2F5F4);
+  box-shadow: inset 0 0 0 1.5px var(--line); font: inherit; font-weight: 800; font-size: 13px; color: var(--ink); cursor: pointer; text-align: center; line-height: 1.2; }
+.tbtn .tdot { width: 10px; height: 10px; }
+.tbtn.on { background: var(--ink); color: #fff; box-shadow: var(--shadow-sm); }
+.fgroup { border-bottom: 1px solid var(--line-soft); }
+.fgroup summary { list-style: none; display: flex; align-items: center; gap: 8px; padding: 15px 2px; cursor: pointer; font-weight: 800; font-size: 15px; }
+.fgroup summary::-webkit-details-marker { display: none; }
+.fgroup summary > span:first-child { flex: 1; }
+.fgroup summary svg { width: 18px; height: 18px; color: var(--muted); transform: rotate(90deg); transition: transform .2s; }
+.fgroup[open] summary svg { transform: rotate(-90deg); }
+.fcount { background: var(--accent); color: #fff; border-radius: 99px; font-size: 11px; min-width: 20px; height: 20px; display: grid; place-items: center; padding: 0 6px; }
+.checks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px 10px; padding: 0 0 14px; }
+.checks.three { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 420px) { .checks.three { grid-template-columns: repeat(3, 1fr); } }
+.check { display: flex; align-items: center; gap: 10px; padding: 8px 2px; font-size: 14px; font-weight: 600; cursor: pointer; min-width: 0; }
+.check span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.check input { position: absolute; opacity: 0; pointer-events: none; }
+.check .box { width: 20px; height: 20px; border-radius: 6px; box-shadow: inset 0 0 0 1.5px var(--line); display: grid; place-items: center; flex: none; color: transparent; transition: background .15s; }
+.check .box svg { width: 14px; height: 14px; }
+.check input:checked + .box { background: var(--accent); box-shadow: none; color: #fff; }
+.check input:focus-visible + .box { outline: 2px solid var(--accent); outline-offset: 2px; }
+
 /* ---------- Forms ---------- */
 .field { margin-bottom: 20px; }
 .field > label, .field > .label { display: block; font-weight: 800; font-size: 14px; margin-bottom: 7px; }
@@ -305,6 +341,8 @@ textarea.input { resize: vertical; min-height: 84px; }
   .panel-body { padding: 8px 16px 24px; }
   dialog { width: 560px; height: auto; max-height: min(860px, calc(100% - 48px)); margin: auto; border-radius: var(--r-lg); box-shadow: var(--shadow); }
   dialog.small { width: 440px; }
+  dialog.sheet { width: 480px; }
+  dialog.sheet .dlg-body { flex: 0 1 auto; }
   .dlg { max-height: min(860px, calc(100vh - 48px)); }
 }
 

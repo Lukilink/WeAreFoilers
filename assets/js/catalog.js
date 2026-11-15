@@ -5,9 +5,9 @@
  */
 window.CATALOG = {
   types: [
-    { id: 'private', label: 'Foiler', plural: 'Foilers' },
-    { id: 'school',  label: 'School', plural: 'Schools' },
-    { id: 'shop',    label: 'Shop',   plural: 'Shops & rentals' }
+    { id: 'private', label: 'Foiler',          plural: 'Foilers' },
+    { id: 'school',  label: 'School & Rental', plural: 'Schools & Rentals' },
+    { id: 'shop',    label: 'Shop',            plural: 'Shops' }
   ],
 
   disciplines: [
@@ -41,6 +41,19 @@ window.CATALOG = {
     { id: 'ride-share',       label: 'Ride share',       icon: 'car' },
     { id: 'beginner-tips',    label: 'Tips for newbies', icon: 'sparkle' },
     { id: 'coffee',           label: 'Coffee after',     icon: 'coffee' }
+  ],
+
+  /* Kind of gear: what a foiler owns, a school rents out, a shop sells or rents. */
+  kit: [
+    { id: 'wings',     label: 'Wings' },
+    { id: 'foils',     label: 'Foils' },
+    { id: 'boards',    label: 'Boards' },
+    { id: 'kites',     label: 'Kites' },
+    { id: 'parawings', label: 'Parawings' },
+    { id: 'sails',     label: 'Windfoil sails' },
+    { id: 'efoils',    label: 'eFoils' },
+    { id: 'foil-drives', label: 'Foil drives' },
+    { id: 'wetsuits',  label: 'Wetsuits' }
   ],
 
   brands: [

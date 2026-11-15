@@ -101,6 +101,8 @@ create table if not exists public.profiles (
   constraint profiles_at_away_needs_away check (not at_away or away_lat is not null),
   constraint profiles_owner_or_auto check (owner_id is not null or is_auto)
 );
+-- kind of gear (wings, foils, boards …): what a foiler owns, a school rents out, a shop sells or rents
+alter table public.profiles add column if not exists kit text[] not null default '{}' check (public.tags_valid(kit, 12, 30, '^[a-z-]+$'));
 create index if not exists profiles_live_idx on public.profiles (status, visible);
 -- public hint "this card has WhatsApp/email" without revealing them
 alter table public.profiles add column if not exists has_contact boolean generated always as (whatsapp is not null or email is not null) stored;
@@ -152,12 +154,12 @@ revoke all on public.profiles, public.partner_requests, public.reports, public.s
 
 -- Visitors: public columns only
 grant select (id, type, name, avatar_seed, photo_path, home_label, home_lat, home_lng, away_label, away_lat, away_lng,
-              away_until, at_away, disciplines, discipline_other, open_for, gear, gear_other, about, instagram, website,
+              away_until, at_away, disciplines, discipline_other, open_for, gear, gear_other, kit, about, instagram, website,
               hours, is_partner, is_auto, has_contact, created_at, updated_at)
   on public.profiles to anon;
 -- Members: plus WhatsApp and email
 grant select (id, type, name, avatar_seed, photo_path, home_label, home_lat, home_lng, away_label, away_lat, away_lng,
-              away_until, at_away, disciplines, discipline_other, open_for, gear, gear_other, about, instagram, website,
+              away_until, at_away, disciplines, discipline_other, open_for, gear, gear_other, kit, about, instagram, website,
               hours, is_partner, is_auto, has_contact, created_at, updated_at, whatsapp, email)
   on public.profiles to authenticated;
 
@@ -239,6 +241,7 @@ begin
     open_for         = case when p ? 'openFor' then coalesce(array(select jsonb_array_elements_text(p->'openFor')), '{}') else open_for end,
     gear             = case when p ? 'gear' then coalesce(array(select jsonb_array_elements_text(p->'gear')), '{}') else gear end,
     gear_other       = case when p ? 'gearOther' then coalesce(p->>'gearOther', '') else gear_other end,
+    kit              = case when p ? 'kit' then coalesce(array(select jsonb_array_elements_text(p->'kit')), '{}') else kit end,
     about            = case when p ? 'about' then coalesce(p->>'about', '') else about end,
     instagram        = case when p ? 'instagram' then nullif(p->>'instagram', '') else instagram end,
     whatsapp         = case when p ? 'whatsapp' then nullif(p->>'whatsapp', '') else whatsapp end,

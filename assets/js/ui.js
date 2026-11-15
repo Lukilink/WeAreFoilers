@@ -82,8 +82,11 @@
     }
     if (p.openFor && p.openFor.length) h += '<div class="tags">' + p.openFor.map(openTag).join('') + '</div>';
 
+    var kit = (p.kit || []).map(function (id) { var k = byId(C.kit, id); return k ? k.label : id; });
+    if (kit.length) h += '<p class="gear">' + I.board + '<span>' + ({ private: 'Gear: ', school: 'Rents ', shop: 'Sells & rents ' }[p.type] || '') +
+      esc((p.type === 'private' ? kit.join(' · ') : kit.join(' · ').toLowerCase().replace(/efoils/, 'eFoils'))) + '</span></p>';
     var gear = (p.gear || []).slice(); if (p.gearOther) gear.push(p.gearOther);
-    if (gear.length) h += '<p class="gear">' + I.foil + '<span>Rides ' + gear.map(esc).join(' · ') + '</span></p>';
+    if (gear.length) h += '<p class="gear">' + I.foil + '<span>' + (p.type === 'private' ? 'Rides ' : 'Brands: ') + gear.map(esc).join(' · ') + '</span></p>';
     if (p.about) h += p.isAuto ? '<p class="about">' + esc(p.about) + '</p>' : '<p class="about">“' + esc(p.about) + '”</p>';
     if (p.type !== 'private' && p.hours) h += '<p class="gear">' + I.clock + '<span>' + esc(p.hours) + '</span></p>';
 

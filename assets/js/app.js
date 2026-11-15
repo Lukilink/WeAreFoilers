@@ -7,7 +7,7 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var esc = U.esc;
-  var state = { profiles: [], me: null, settings: {}, partnerRequest: null, claim: null, view: 'list', selected: null, filters: { disc: [], types: [], open: [] } };
+  var state = { profiles: [], me: null, settings: {}, partnerRequest: null, claim: null, view: 'list', selected: null, filters: { types: [], disc: [], brands: [], kit: [], open: [] } };
   var quip = C.quips[Math.floor(Math.random() * C.quips.length)];
   var desktop = window.matchMedia('(min-width: 900px)');
 
@@ -60,15 +60,34 @@
     return L.divIcon({ html: '<div class="pin' + (sel ? ' sel' : '') + '">' + U.avatar(p) + badge + '</div>', className: 'pin-wrap', iconSize: [40, 40], iconAnchor: [20, 20] });
   }
 
+  /* ---------- Filters ----------
+     Top row: who (Foilers / Schools & Rentals / Shops) plus a "Filters" sheet with
+     Disciplines, Brands, Gear and Open for. Within a group any match counts, groups combine. */
+  var GROUPS = [
+    { key: 'disc',   title: 'Disciplines', items: function () { return C.disciplines.filter(function (d) { return d.id !== 'other'; }); } },
+    { key: 'brands', title: 'Brands',      items: function () { return C.brands.map(function (b) { return { id: b, label: b }; }); } },
+    { key: 'kit',    title: 'Gear',        items: function () { return C.kit; } },
+    { key: 'open',   title: 'Open for',    items: function () { return C.openFor; } }
+  ];
+  function lower(a) { return (a || []).map(function (x) { return String(x).toLowerCase(); }); }
+  function anyIn(have, want) { return have.some(function (x) { return want.indexOf(x) >= 0; }); }
   function matches(p) {
     var f = state.filters;
-    if (f.disc.length && !(p.disciplines || []).some(function (d) { return f.disc.indexOf(d.id) >= 0; })) return false;
     if (f.types.length && f.types.indexOf(p.type) < 0) return false;
-    if (f.open.length && !(p.openFor || []).some(function (o) { return f.open.indexOf(o) >= 0; })) return false;
+    if (f.disc.length && !anyIn((p.disciplines || []).map(function (d) { return d.id; }), f.disc)) return false;
+    if (f.brands.length && !anyIn(lower(p.gear), lower(f.brands))) return false;
+    if (f.kit.length && !anyIn(p.kit || [], f.kit)) return false;
+    if (f.open.length && !anyIn(p.openFor || [], f.open)) return false;
     return true;
   }
   function filtered() { return state.profiles.filter(matches); }
   function find(id) { return U.byId(state.profiles, id); }
+  function moreCount() { var f = state.filters; return f.disc.length + f.brands.length + f.kit.length + f.open.length; }
+  function itemLabel(key, id) {
+    var g = GROUPS.filter(function (x) { return x.key === key; })[0];
+    var it = U.byId(g.items(), id); return it ? it.label : id;
+  }
+  function toggleIn(arr, v) { var i = arr.indexOf(v); if (i >= 0) arr.splice(i, 1); else arr.push(v); }
 
   function renderMarkers() {
     cluster.clearLayers(); markers = {};
@@ -80,50 +99,76 @@
     });
   }
 
-  /* ---------- Filter chips ---------- */
-  var CHIP_DISC = ['wing', 'pump', 'prone', 'kite', 'downwind', 'parawing', 'efoil', 'windfoil', 'foil-assist', 'sup', 'wake', 'tow'];
+  function typeButtons(cls) {
+    return C.types.map(function (t) {
+      return '<button type="button" class="' + cls + (state.filters.types.indexOf(t.id) >= 0 ? ' on' : '') + '" data-type-f="' + t.id + '"><i class="tdot t-' + t.id + '"></i>' + t.plural + '</button>';
+    }).join('');
+  }
   function renderChips() {
-    var f = state.filters, more = f.types.length + f.open.length;
-    var h = '<button class="chip' + (f.disc.length ? '' : ' on') + '" data-disc="">All</button>';
-    CHIP_DISC.forEach(function (id) {
-      var d = U.byId(C.disciplines, id);
-      h += '<button class="chip' + (f.disc.indexOf(id) >= 0 ? ' on' : '') + '" data-disc="' + id + '">' + d.label + '</button>';
+    var f = state.filters, n = moreCount();
+    var h = typeButtons('chip');
+    $('btnFilter').innerHTML = I.filter + (n ? '<span class="count">' + n + '</span>' : '');
+    $('btnFilter').classList.toggle('on', n > 0);
+    $('btnFilter').setAttribute('aria-label', n ? 'Filters, ' + n + ' active' : 'Filters');
+    // active filters as quick-remove pills
+    GROUPS.forEach(function (g) {
+      f[g.key].forEach(function (id) {
+        h += '<button class="chip active-f" data-rm="' + g.key + '" data-v="' + esc(id) + '" aria-label="Remove filter ' + esc(itemLabel(g.key, id)) + '">' + esc(itemLabel(g.key, id)) + I.close + '</button>';
+      });
     });
-    h += '<button class="chip' + (more ? ' on' : '') + '" data-more="1">' + I.filter + 'More' + (more ? '<span class="count">' + more + '</span>' : '') + '</button>';
     $('chips').innerHTML = h;
     syncFinderHeight();
   }
   $('chips').addEventListener('click', function (e) {
     var b = e.target.closest('.chip'); if (!b) return;
     if (b.dataset.more) return openFilters();
-    var id = b.dataset.disc, d = state.filters.disc;
-    if (!id) state.filters.disc = [];
-    else if (d.indexOf(id) >= 0) d.splice(d.indexOf(id), 1);
-    else d.push(id);
+    if (b.dataset.typeF) toggleIn(state.filters.types, b.dataset.typeF);
+    else if (b.dataset.rm) toggleIn(state.filters[b.dataset.rm], b.dataset.v);
     refresh();
   });
 
+  $('btnFilter').addEventListener('click', function () { openFilters(); });
   function openFilters() {
     var f = state.filters;
-    var chipList = function (list, key) {
-      return '<div class="pick">' + list.map(function (x) {
-        return '<button type="button" class="chip' + (f[key].indexOf(x.id) >= 0 ? ' on' : '') + '" data-k="' + key + '" data-v="' + x.id + '">' + (x.icon ? I[x.icon] : '') + (x.plural || x.label) + '</button>';
-      }).join('') + '</div>';
-    };
+    function groupHtml(g, open) {
+      var n = f[g.key].length;
+      return '<details class="fgroup" data-g="' + g.key + '"' + (open ? ' open' : '') + '><summary><span>' + g.title + '</span>' +
+        '<span class="fcount' + (n ? '' : ' hidden') + '">' + n + '</span>' + I.chevron + '</summary>' +
+        '<div class="checks' + (g.key === 'brands' ? ' three' : '') + '">' + g.items().map(function (x) {
+          return '<label class="check"><input type="checkbox" data-k="' + g.key + '" value="' + esc(x.id) + '"' + (f[g.key].indexOf(x.id) >= 0 ? ' checked' : '') + '>' +
+            '<span class="box">' + I.check + '</span><span>' + esc(x.label) + '</span></label>';
+        }).join('') + '</div></details>';
+    }
     var d = openDialog(
       head('Filters') +
-      '<div class="dlg-body"><div class="field"><span class="label">Show</span>' + chipList(C.types, 'types') + '</div>' +
-      '<div class="field"><span class="label">Open for</span>' + chipList(C.openFor, 'open') + '</div></div>' +
-      '<div class="dlg-foot"><button class="btn ghost" data-reset>Reset</button><button class="btn" data-close>Show results</button></div>', 'small');
-    d.addEventListener('click', function (e) {
-      var c = e.target.closest('.chip[data-k]');
-      if (c) {
-        var arr = f[c.dataset.k], v = c.dataset.v, i = arr.indexOf(v);
-        if (i >= 0) arr.splice(i, 1); else arr.push(v);
-        c.classList.toggle('on'); refresh();
-      }
-      if (e.target.closest('[data-reset]')) { f.types = []; f.open = []; d.querySelectorAll('.chip.on').forEach(function (x) { x.classList.remove('on'); }); refresh(); }
+      '<div class="dlg-body filters">' +
+        '<div class="type-seg">' + typeButtons('tbtn') + '</div>' +
+        GROUPS.map(function (g, i) { return groupHtml(g, i === 0 || f[g.key].length > 0); }).join('') +
+      '</div>' +
+      '<div class="dlg-foot"><button class="btn ghost" data-reset>Clear all</button><button class="btn accent" data-close id="fShow"></button></div>', 'sheet');
+    function update() {
+      var n = filtered().length;
+      d.querySelector('#fShow').textContent = n ? 'Show ' + n + (n === 1 ? ' result' : ' results') : 'Nothing matches';
+      GROUPS.forEach(function (g) {
+        var c = d.querySelector('[data-g="' + g.key + '"] .fcount'); c.textContent = f[g.key].length; c.classList.toggle('hidden', !f[g.key].length);
+      });
+      d.querySelectorAll('[data-type-f]').forEach(function (b) { b.classList.toggle('on', f.types.indexOf(b.dataset.typeF) >= 0); });
+      refresh();
+    }
+    d.addEventListener('change', function (e) {
+      var c = e.target.closest('input[data-k]'); if (!c) return;
+      toggleIn(f[c.dataset.k], c.value); update();
     });
+    d.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-type-f]');
+      if (t) { toggleIn(f.types, t.dataset.typeF); update(); }
+      if (e.target.closest('[data-reset]')) {
+        f.types = []; GROUPS.forEach(function (g) { f[g.key] = []; });
+        d.querySelectorAll('input[data-k]').forEach(function (x) { x.checked = false; });
+        update();
+      }
+    });
+    update();
   }
 
   /* ---------- Panel ---------- */
@@ -500,18 +545,20 @@
     var isNew = !state.me, claim = isNew ? state.claim : null;
     var dr = JSON.parse(JSON.stringify(state.me || {
       type: 'private', name: '', photo: '', home: null, away: null, atAway: false, disciplines: [], disciplineOther: '',
-      openFor: [], gear: [], gearOther: '', about: '', instagram: '', whatsapp: '', email: '', website: '', hours: ''
+      openFor: [], gear: [], gearOther: '', kit: [], about: '', instagram: '', whatsapp: '', email: '', website: '', hours: ''
     }));
     if (claim) {
-      ['type', 'name', 'disciplines', 'openFor', 'gear', 'about', 'instagram', 'website', 'hours'].forEach(function (k) { dr[k] = JSON.parse(JSON.stringify(claim[k] || dr[k])); });
+      ['type', 'name', 'disciplines', 'openFor', 'gear', 'kit', 'about', 'instagram', 'website', 'hours'].forEach(function (k) { dr[k] = JSON.parse(JSON.stringify(claim[k] || dr[k])); });
       dr.home = { label: claim.home.label, lat: claim.home.lat, lng: claim.home.lng, exact: true };
       dr.claimOf = claim.id;
     }
+    if (!dr.kit) dr.kit = [];
     if (!dr.id) dr.id = 'new-' + Date.now();
     if (!dr.avatarSeed) dr.avatarSeed = dr.id; // keeps the same color blob after saving
 
     var discChips = C.disciplines.map(function (d) { return '<button type="button" class="chip" data-disc="' + d.id + '">' + d.label + '</button>'; }).join('');
     var openChips = C.openFor.map(function (o) { return '<button type="button" class="chip" data-open="' + o.id + '">' + I[o.icon] + o.label + '</button>'; }).join('');
+    var kitChips = C.kit.map(function (k) { return '<button type="button" class="chip" data-kit="' + k.id + '">' + k.label + '</button>'; }).join('');
     var brandChips = C.brands.map(function (b) { return '<button type="button" class="chip" data-brand="' + esc(b) + '">' + esc(b) + '</button>'; }).join('');
 
     var d = openDialog(head(isNew ? 'Your card' : 'Edit your card') +
@@ -519,7 +566,7 @@
       (claim ? '<div class="notice teal">' + I.robot + '<span>You\'re claiming <b>' + esc(claim.name) + '</b>. We filled in what we knew. Once we\'ve had a quick look, your card replaces the automatic entry.</span></div>' : '') +
       '<p class="section-title">The basics</p>' +
       '<div class="field"><span class="label">I am</span><div class="seg" id="edType">' +
-        C.types.map(function (t) { return '<button type="button" data-type="' + t.id + '">' + (t.id === 'private' ? 'A foiler' : t.id === 'school' ? 'A school' : 'A shop') + '</button>'; }).join('') + '</div></div>' +
+        C.types.map(function (t) { return '<button type="button" data-type="' + t.id + '">' + (t.id === 'private' ? 'A foiler' : t.id === 'school' ? 'School / rental' : 'A shop') + '</button>'; }).join('') + '</div></div>' +
       '<div class="field"><label for="edName" id="edNameLabel">Name or nickname</label><input class="input" id="edName" maxlength="40" autocomplete="nickname"><p class="hint err hidden" data-err="name"></p></div>' +
       '<div class="field"><span class="label">Photo <span class="muted" style="font-weight:600">(optional)</span></span><div class="photo-row"><span id="edAvatar"></span><div class="btns">' +
         '<label class="btn ghost small">' + I.camera + '<span id="edPhotoLbl">Add photo</span><input type="file" accept="image/*" id="edPhoto" class="sr"></label>' +
@@ -532,7 +579,8 @@
         '<input class="input hidden" id="edDiscOther" placeholder="Which one?" maxlength="30" style="margin-top:10px">' +
         '<div class="levels" id="edLevels"></div><p class="hint err hidden" data-err="disc"></p></div>' +
       '<div class="field"><span class="label">Open for</span><div class="pick" id="edOpen">' + openChips + '</div></div>' +
-      '<div class="field"><span class="label">Gear <span class="muted" style="font-weight:600">(optional)</span></span><div class="pick" id="edGear">' + brandChips + '</div>' +
+      '<div class="field"><span class="label"><span id="edKitLabel">Gear</span> <span class="muted" style="font-weight:600">(optional)</span></span><div class="pick" id="edKit">' + kitChips + '</div></div>' +
+      '<div class="field"><span class="label"><span id="edBrandLabel">Brands</span> <span class="muted" style="font-weight:600">(optional)</span></span><div class="pick" id="edGear">' + brandChips + '</div>' +
         '<input class="input" id="edGearOther" placeholder="Something else? e.g. a homemade foil" maxlength="40" style="margin-top:10px"></div>' +
       '<div class="field"><label for="edAbout">About you <span class="counter" id="edAboutCount"></span></label><textarea class="input" id="edAbout" maxlength="160" placeholder="Dawn patrol or sunset sessions? Coffee or beer after?"></textarea></div>' +
 
@@ -552,7 +600,9 @@
     function syncType() {
       d.querySelectorAll('[data-type]').forEach(function (b) { b.classList.toggle('on', b.dataset.type === dr.type); });
       var biz = dr.type !== 'private';
-      q('#edNameLabel').textContent = biz ? (dr.type === 'school' ? 'School name' : 'Shop name') : 'Name or nickname';
+      q('#edNameLabel').textContent = biz ? (dr.type === 'school' ? 'School or rental name' : 'Shop name') : 'Name or nickname';
+      q('#edKitLabel').textContent = { private: 'Your gear', school: 'Gear for rent', shop: 'Gear you sell or rent' }[dr.type];
+      q('#edBrandLabel').textContent = { private: 'Brands you ride', school: 'Brands you use', shop: 'Brands you carry' }[dr.type];
       q('#edHomeLabel').textContent = biz ? 'Address' : 'Home spot';
       q('#edHomeHint').textContent = biz ? 'Shown exactly on the map, so people can find you.' : 'We never show your address. Your pin is moved a little and drawn as a soft circle.';
       q('.biz').classList.toggle('hidden', !biz);
@@ -578,7 +628,7 @@
     q('#edMail').value = dr.email; q('#edWeb').value = dr.website; q('#edHours').value = dr.hours; q('#edGearOther').value = dr.gearOther; q('#edDiscOther').value = dr.disciplineOther;
     var count = function () { q('#edAboutCount').textContent = q('#edAbout').value.length + '/160'; };
     count(); syncType(); renderLevels();
-    setOn('[data-open]', 'open', dr.openFor); setOn('[data-brand]', 'brand', dr.gear);
+    setOn('[data-open]', 'open', dr.openFor); setOn('[data-brand]', 'brand', dr.gear); setOn('[data-kit]', 'kit', dr.kit);
     locationPicker(q('#edHome'), function () { return dr.home; }, function (v) { dr.home = v; });
 
     d.addEventListener('click', function (e) {
@@ -593,6 +643,7 @@
         dr.disciplines.forEach(function (x) { if (x.id === p[0]) x.level = +p[1]; });
         renderLevels();
       } else if (t.dataset.open) { toggle(dr.openFor, t.dataset.open); t.classList.toggle('on'); }
+      else if (t.dataset.kit) { toggle(dr.kit, t.dataset.kit); t.classList.toggle('on'); }
       else if (t.dataset.brand) { toggle(dr.gear, t.dataset.brand); t.classList.toggle('on'); }
       else if (t.id === 'edPhotoDel') { dr.photo = ''; renderAvatar(); }
     });

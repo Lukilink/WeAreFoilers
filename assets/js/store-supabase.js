@@ -7,7 +7,7 @@
   'use strict';
 
   var PUBLIC_COLS = 'id,type,name,avatar_seed,photo_path,home_label,home_lat,home_lng,away_label,away_lat,away_lng,away_until,at_away,' +
-    'disciplines,discipline_other,open_for,gear,gear_other,about,instagram,website,hours,is_partner,is_auto,has_contact,created_at';
+    'disciplines,discipline_other,open_for,gear,gear_other,kit,about,instagram,website,hours,is_partner,is_auto,has_contact,created_at';
   var MEMBER_COLS = PUBLIC_COLS + ',whatsapp,email';
 
   window.createSupabaseStore = function (cfg) {
@@ -33,7 +33,7 @@
         home: { label: r.home_label, lat: r.home_lat, lng: r.home_lng },
         away: r.away_lat != null ? { label: r.away_label, lat: r.away_lat, lng: r.away_lng, until: r.away_until || '' } : null,
         atAway: !!r.at_away, disciplines: r.disciplines || [], disciplineOther: r.discipline_other || '',
-        openFor: r.open_for || [], gear: r.gear || [], gearOther: r.gear_other || '', about: r.about || '',
+        openFor: r.open_for || [], gear: r.gear || [], gearOther: r.gear_other || '', kit: r.kit || [], about: r.about || '',
         instagram: r.instagram || '', website: r.website || '', hours: r.hours || '',
         whatsapp: r.whatsapp || '', email: r.email || '', contactHidden: !user && !!r.has_contact,
         isPartner: !!r.is_partner, isAuto: !!r.is_auto, sourceUrl: r.source_url || '',
