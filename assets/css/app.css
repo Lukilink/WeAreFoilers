@@ -85,6 +85,17 @@ svg { display: block; }
 .search input { flex: 1; min-width: 0; border: 0; outline: 0; font: inherit; font-size: 15px; padding: 8px 6px; background: transparent; color: var(--ink); }
 .search input::placeholder { color: var(--muted); }
 .search .icon-btn { width: 38px; height: 38px; border-radius: 99px; }
+.search { position: relative; }
+.suggest { position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: #fff; border-radius: 18px; box-shadow: var(--shadow); padding: 6px; z-index: 5; max-height: min(420px, 60vh); overflow-y: auto; }
+.sg { display: flex; align-items: center; gap: 10px; width: 100%; border: 0; background: none; text-align: left; font: inherit; color: var(--ink); padding: 8px 10px; border-radius: 12px; cursor: pointer; }
+.sg:hover, .sg.on { background: var(--bg-soft); }
+.sg .avatar { width: 32px; height: 32px; font-size: 13px; flex: none; }
+.sg > svg { width: 20px; height: 20px; margin: 0 6px; color: var(--muted); flex: none; }
+.sg-text { display: flex; flex-direction: column; min-width: 0; }
+.sg-text b { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sg-text small { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sg.place { border-top: 1px solid var(--line-soft); border-radius: 0 0 12px 12px; margin-top: 2px; }
+.sg.place:first-child { border-top: 0; border-radius: 12px; margin-top: 0; }
 .chips { display: flex; gap: 6px; overflow-x: auto; padding: 10px 12px 6px; scrollbar-width: none; }
 .chips::-webkit-scrollbar { display: none; }
 .chip { flex: none; display: inline-flex; align-items: center; gap: 6px; border: 0; cursor: pointer; font-weight: 700; font-size: 13px; padding: 7px 13px; border-radius: 99px;

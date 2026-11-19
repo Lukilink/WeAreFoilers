@@ -773,17 +773,74 @@
   $('demoBanner').addEventListener('click', function () { toast('Demo mode: every foiler here is made up.'); });
 
   /* ---------- Search & locate ---------- */
-  $('searchForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var q = $('searchInput').value.trim(); if (!q) return;
+  // Typing shows matching names (schools, shops, foilers) right away; Enter without a picked name searches a place.
+  var sug = { items: [], active: -1 };
+  function norm(t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  function nameMatches(q) {
+    q = norm(q).trim(); if (q.length < 2) return [];
+    var out = [];
+    state.profiles.forEach(function (p) {
+      var n = norm(p.name), i = n.indexOf(q);
+      if (i < 0) return;
+      var score = i === 0 ? 0 : /[^a-z0-9]/.test(n.charAt(i - 1)) ? 1 : 2;
+      if (p.type !== 'private') score -= .5;
+      out.push({ p: p, s: score });
+    });
+    out.sort(function (a, b) { return a.s - b.s || a.p.name.localeCompare(b.p.name); });
+    return out.slice(0, 6).map(function (x) { return x.p; });
+  }
+  function renderSuggest() {
+    var q = $('searchInput').value.trim(), box = $('suggest');
+    sug.items = nameMatches(q);
+    if (!q || q.length < 2) { closeSuggest(); return; }
+    var h = sug.items.map(function (p, i) {
+      var pl = U.place(p);
+      return '<button type="button" role="option" class="sg' + (i === sug.active ? ' on' : '') + '" data-sg="' + i + '">' + U.avatar(p, 'xs') +
+        '<span class="sg-text"><b>' + esc(p.name) + '</b><small>' + (p.type !== 'private' ? esc(U.typeLabel(p)) + ' · ' : '') + esc(pl.label || '') + '</small></span></button>';
+    }).join('');
+    h += '<button type="button" role="option" class="sg place' + (sug.active === sug.items.length ? ' on' : '') + '" data-sg="place">' + I.pin +
+      '<span class="sg-text"><b>Go to place “' + esc(q) + '”</b></span></button>';
+    box.innerHTML = h; box.hidden = false;
+    $('searchInput').setAttribute('aria-expanded', 'true');
+  }
+  function closeSuggest() { sug.active = -1; $('suggest').hidden = true; $('suggest').innerHTML = ''; $('searchInput').setAttribute('aria-expanded', 'false'); }
+  function pickName(p) {
+    closeSuggest();
+    $('searchInput').value = ''; $('searchInput').blur();
+    openProfile(p.id, { fly: true });
+  }
+  function placeSearch(q) {
+    closeSuggest();
     $('searchInput').blur();
     geoSearch(q, 1).then(function (r) {
-      if (!r.length) return toast('Couldn\'t find that place. Try a town or spot name.');
+      if (!r.length) return toast('Couldn\'t find that place or name. Try a town, spot or school.');
       var bb = r[0].boundingbox.map(Number);
       if (state.view !== 'list') closeProfile();
       if (!desktop.matches) setSize('half');
       map.flyToBounds([[bb[0], bb[2]], [bb[1], bb[3]]], { maxZoom: 10, duration: .9, paddingBottomRight: [0, desktop.matches ? 0 : panel.getBoundingClientRect().height] });
     }).catch(function () { toast('Search is not available right now.'); });
+  }
+  $('searchInput').addEventListener('input', function () { sug.active = -1; renderSuggest(); });
+  $('searchInput').addEventListener('focus', renderSuggest);
+  $('searchInput').addEventListener('blur', function () { setTimeout(closeSuggest, 150); });
+  $('searchInput').addEventListener('keydown', function (e) {
+    if ($('suggest').hidden) return;
+    var n = sug.items.length + 1;
+    if (e.key === 'ArrowDown') { e.preventDefault(); sug.active = (sug.active + 1) % n; renderSuggest(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); sug.active = (sug.active - 1 + n) % n; renderSuggest(); }
+    else if (e.key === 'Escape') closeSuggest();
+  });
+  $('suggest').addEventListener('pointerdown', function (e) { e.preventDefault(); }); // keep focus until the click lands
+  $('suggest').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-sg]'); if (!b) return;
+    if (b.dataset.sg === 'place') placeSearch($('searchInput').value.trim());
+    else pickName(sug.items[+b.dataset.sg]);
+  });
+  $('searchForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = $('searchInput').value.trim(); if (!q) return;
+    if (sug.active >= 0 && sug.active < sug.items.length) return pickName(sug.items[sug.active]);
+    placeSearch(q);
   });
   $('btnLocate').addEventListener('click', function () {
     if (!navigator.geolocation) return toast('Your browser can\'t share a location.');

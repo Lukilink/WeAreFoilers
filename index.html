@@ -32,8 +32,9 @@
   <div class="finder" id="finder">
     <form class="search" id="searchForm" role="search">
       <span id="searchIcon"></span>
-      <input id="searchInput" type="search" placeholder="Where are you heading?" autocomplete="off" enterkeyhint="search" aria-label="Search a place">
+      <input id="searchInput" type="search" placeholder="Place, school or shop" autocomplete="off" enterkeyhint="search" aria-label="Search a place or name" role="combobox" aria-expanded="false" aria-controls="suggest" aria-autocomplete="list">
       <button type="button" class="icon-btn" id="btnLocate" aria-label="Near me"></button>
+      <div class="suggest" id="suggest" role="listbox" hidden></div>
     </form>
     <div class="chips" id="chips" aria-label="Filter by discipline"></div>
   </div>
